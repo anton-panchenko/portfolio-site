@@ -74,8 +74,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'main';
+
         return $this->render('index');
     }
+
+    public function actionPortfolio()
+    {
+        $this->layout = 'portfolio';
+
+        return $this->render('portfolio');
+    }
+
 
     /**
      * Logs in a user.

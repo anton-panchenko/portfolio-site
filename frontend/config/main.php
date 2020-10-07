@@ -43,7 +43,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'blog/<url>' => 'blog/article',
-                'blog' => 'blog/index'
+                'blog' => 'blog/index',
             ],
         ],
     ],
