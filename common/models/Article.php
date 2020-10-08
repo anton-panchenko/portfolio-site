@@ -43,6 +43,7 @@ class Article extends \yii\db\ActiveRecord
         return [
             [['meta_title', 'url'], 'required'],
             [['meta_description', 'description', 'content'], 'string'],
+            [['url'], 'unique'],
             [['status', 'created_at', 'updated_at', 'viewed', 'user_id', 'category_id'], 'integer'],
             [['meta_title', 'url', 'title', 'image'], 'string', 'max' => 255],
         ];
@@ -89,5 +90,16 @@ class Article extends \yii\db\ActiveRecord
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
+    }
+
+    public static function getStatusList()
+    {
+        return ['Draft', 'Active'];
+    }
+
+    public function getStatusName()
+    {
+        $list = self::getStatusList();
+        return $list[$this->status];
     }
 }

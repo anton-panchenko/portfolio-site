@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -28,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
 //            'meta_title',
 //            'meta_description:ntext',
-            'url:url',
+            'url:text',
             'title',
             'description:ntext',
 //            'content:ntext',
-            'status',
+            ['attribute' => 'status', 'filter' => \common\models\Article::getStatusList(), 'value' => 'statusName'],
             //'created_at',
             //'updated_at',
 //            'image',
