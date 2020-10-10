@@ -26,13 +26,15 @@ $this->title = $article->title;
                 <?= $article->title ?>
             </h2><!-- end post_header__title -->
             <div class="post_header__img">
-                <img src="/img/png/yii_framework.png" alt="post_image">
+                <img src="<?php echo \Yii::$app->imagemanager->getImagePath($article->image); ?>" alt="post_image">
             </div><!-- end post_header__img -->
             <div class="post_header__date">
-                <a href="404.html" class="post_header__date_date">19 / 09 / 2020</a>
-                <a href="404.html" class="post_header__date_author">Антон Панченко</a>
+                <a href="404.html" class="post_header__date_date">
+                    <?= Yii::$app->formatter->asDate($article->updated_at, 'php:d / m / Y') ?>
+                </a>
+                <a href="404.html" class="post_header__date_author"><?= $article->author->username ?></a>
             </div><!-- end post_header__date -->
-            <a href="404.html" class="post_header__comments">0 комментариев</a><!-- end post_header__comments -->
+            <a href="404.html" class="post_header__comments"><?= $article->category->title ?></a><!-- end post_header__comments -->
         </div><!-- end post_header -->
         <div class="post_body">
             <?= $article->content ?>

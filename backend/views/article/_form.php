@@ -28,7 +28,12 @@ use vova07\imperavi\Widget;
 
     <?= $form->field($model, 'status')->dropDownList(\common\models\Article::getStatusList()) ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
+        'aspectRatio' => (16/9), //set the aspect ratio
+        'cropViewMode' => 1, //crop mode, option info: https://github.com/fengyuanchen/cropper/#viewmode
+        'showPreview' => true, //false to hide the preview
+        'showDeletePickedImageConfirm' => false, //on true show warning before detach image
+    ]); ?>
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 

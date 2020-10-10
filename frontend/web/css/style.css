@@ -1271,6 +1271,38 @@ textarea {
   color: #a3c5c3;
 }
 
+/*----------------------Pagination------------------------*/
+
+.pagination {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 calc(10px + 0.6944444444444444vw) calc(7.5px + 0.5208333333333334vw);
+}
+.pagination .prev, .pagination .next {
+  display: none;
+}
+
+.pagination li {
+  color: #6c7988;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: calc(15px + 1.0416666666666667vw);
+  /*padding: 6px calc(6px + 0.4166666666666667vw);*/
+  padding: 6px 10px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.pagination li.active {
+  color: #a3c5c3;
+  border-bottom: 1px solid #a3c5c3;
+}
+
+.pagination li:hover {
+  color: #a3c5c3;
+}
+
+
 .blogPage_sidebar {
   width: 300px;
   margin: calc(7.5px + 0.5208333333333334vw);

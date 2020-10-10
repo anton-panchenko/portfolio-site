@@ -3,18 +3,19 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\ArticleSearch */
+/* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-index">
+<div class="user-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -26,20 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-//            'meta_title',
-//            'meta_description:ntext',
-            'url:text',
-            'title',
-            'description:ntext',
-//            'content:ntext',
-            ['attribute' => 'status', 'filter' => \common\models\Article::getStatusList(), 'value' => 'statusName'],
+            'id',
+            'username',
+            'auth_key',
+            'password_hash',
+            'password_reset_token',
+            //'email:email',
+            //'status',
             //'created_at',
             //'updated_at',
-            'image',
-            //'viewed',
-//            'user_id',
-            'category_id',
+            //'photo',
+            //'verification_token',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

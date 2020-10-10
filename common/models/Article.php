@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "article".
@@ -33,6 +34,14 @@ class Article extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'article';
+    }
+
+    public function behaviors()
+    {
+        parent::behaviors();
+        return [
+            TimestampBehavior::className()
+        ];
     }
 
     /**
@@ -101,5 +110,15 @@ class Article extends \yii\db\ActiveRecord
     {
         $list = self::getStatusList();
         return $list[$this->status];
+    }
+
+    public function getAuthor()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 }

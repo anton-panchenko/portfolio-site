@@ -33,19 +33,19 @@ AppAsset::register($this);
 <div class="app" id="app">
 
     <div class="head_menu" id="head_menu">
-        <a href="web/site/index#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
-        <a href="web/site/index#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
-        <a href="web/site/index#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
-        <a href="web/site/index#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
-        <a href="web/site/index#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
+        <a href="/#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
+        <a href="/#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
+        <a href="/#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
+        <a href="/#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
+        <a href="/#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
     </div><!-- end head_menu -->
 
     <div class="fixed_menu">
-        <a href="web/site/index#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
-        <a href="web/site/index#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
-        <a href="web/site/index#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
-        <a href="web/site/index#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
-        <a href="web/site/index#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
+        <a href="/#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
+        <a href="/#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
+        <a href="/#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
+        <a href="/#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
+        <a href="/#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
     </div><!-- end fixed_menu -->
 
     <a href="#head_menu" class="scrollToTop" id="scrollToTop">

@@ -6,6 +6,8 @@ use yii\widgets\LinkPager;
 
 /* @var $articles \frontend\controllers\BlogController */
 /* @var $pages \frontend\controllers\BlogController */
+/* @var $categories \frontend\controllers\BlogController */
+/* @var $popularArticles \frontend\controllers\BlogController */
 
 $this->title = 'Блог';
 
@@ -35,11 +37,13 @@ $this->title = 'Блог';
                     </a>
                 </div><!-- end blog_gallery__item_header -->
                 <a href="post.html" class="blogPage_gallery__item_img">
-                    <img src="/img/png/yii_framework.png" alt="post_image">
+                    <img src="<?php echo \Yii::$app->imagemanager->getImagePath($article->image); ?>"  alt="post_image">
                 </a><!-- end blog_gallery__item_img -->
                 <div class="blogPage_gallery__item_footer">
-                    <a href="404.html" class="blogPage_gallery__item_footer__date">19 / 09 / 2020</a>
-                    <a href="404.html" class="blogPage_gallery__item_footer__author">Антон Панченко</a>
+                    <a href="404.html" class="blogPage_gallery__item_footer__date">
+                        <?= Yii::$app->formatter->asDate($article->updated_at, 'php:d / m / Y') ?>
+                    </a>
+                    <a href="404.html" class="blogPage_gallery__item_footer__author"><?= $article->category->title ?></a>
                 </div><!-- end blog_gallery__item_footer -->
                 <div class="blogPage_gallery__item_secondfooter">
                     <a href="404.html" class="blogPage_gallery__item_secondfooter__comments">0 комментариев</a>
@@ -54,11 +58,6 @@ $this->title = 'Блог';
                     'pagination' => $pages,
                 ]);
                 ?>
-<!--                <a href="404.html" class="blogPage_gallery__pagination_item active">1</a>-->
-<!--                <a href="404.html" class="blogPage_gallery__pagination_item">2</a>-->
-<!--                <a href="404.html" class="blogPage_gallery__pagination_item">3</a>-->
-<!--                <a href="404.html" class="blogPage_gallery__pagination_item">4</a>-->
-<!--                <a href="404.html" class="blogPage_gallery__pagination_item">5</a>-->
             </div><!-- end blogPage_gallery__pagination -->
         </div><!-- end blogPage_gallery -->
         <div class="blogPage_sidebar">
@@ -67,30 +66,12 @@ $this->title = 'Блог';
                     Категории
                 </h3><!-- end blogPage_sidebar__categories_title -->
                 <div class="blogPage_sidebar__categories_items">
+                    <?php foreach ($categories as $category): ?>
                     <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Front-end</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(2)</p>
+                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text"><?= $category->title ?></a>
+<!--                        <p class="blogPage_sidebar__categories_items__item_counter">(2)</p>-->
                     </div><!-- end blogPage_sidebar__categories_items__item -->
-                    <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Back-end</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(1)</p>
-                    </div><!-- end blogPage_sidebar__categories_items__item -->
-                    <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Приложения</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(0)</p>
-                    </div><!-- end blogPage_sidebar__categories_items__item -->
-                    <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Верстка</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(0)</p>
-                    </div><!-- end blogPage_sidebar__categories_items__item -->
-                    <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Физика</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(0)</p>
-                    </div><!-- end blogPage_sidebar__categories_items__item -->
-                    <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text">Музыка</a>
-                        <p class="blogPage_sidebar__categories_items__item_counter">(0)</p>
-                    </div><!-- end blogPage_sidebar__categories_items__item -->
+                    <?php endforeach; ?>
                 </div><!-- end blogPage_sidebar__categories_items -->
             </div><!-- end blogPage_sidebar__categories -->
             <div class="blogPage_sidebar__popPosts">
@@ -98,39 +79,19 @@ $this->title = 'Блог';
                     Популярные статьи
                 </h3><!-- end blogPage_sidebar__popPosts_title -->
                 <div class="blogPage_sidebar__popPosts_items">
+                    <?php foreach ($popularArticles as $popularArticle): ?>
                     <div class="blogPage_sidebar__popPosts_items__item">
                         <a href="404.html" class="blogPage_sidebar__popPosts_items__item_date">
-                            20 / 09 / 2020
+                            <?= Yii::$app->formatter->asDate($popularArticle->updated_at, 'php:d / m / Y') ?>
                         </a>
                         <a href="post.html" class="blogPage_sidebar__popPosts_items__item_title">
-                            Обработка появления на экране без плагинов
+                            <?= $popularArticle->title ?>
                         </a>
                         <a href="404.html" class="blogPage_sidebar__popPosts_items__item_comments">
                             0 комментариев
                         </a>
                     </div><!-- end blogPage_sidebar__popPosts_items__item -->
-                    <div class="blogPage_sidebar__popPosts_items__item">
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_date">
-                            20 / 09 / 2020
-                        </a>
-                        <a href="post.html" class="blogPage_sidebar__popPosts_items__item_title">
-                            Простой прелоадер на чистом JavaScript
-                        </a>
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_comments">
-                            0 комментариев
-                        </a>
-                    </div><!-- end blogPage_sidebar__popPosts_items__item -->
-                    <div class="blogPage_sidebar__popPosts_items__item">
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_date">
-                            19 / 09 / 2020
-                        </a>
-                        <a href="post.html" class="blogPage_sidebar__popPosts_items__item_title">
-                            Yii2-advanсed. Установка и первая настройка
-                        </a>
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_comments">
-                            0 комментариев
-                        </a>
-                    </div><!-- end blogPage_sidebar__popPosts_items__item -->
+                    <?php endforeach; ?>
                 </div><!-- end blogPage_sidebar__popPosts_items -->
             </div><!-- end blogPage_sidebar__popPosts -->
             <div class="blogPage_sidebar__tags">
