@@ -1,9 +1,10 @@
 <?php
 
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\helpers\StatusHelper;
-use vova07\imperavi\Widget;
+//use vova07\imperavi\Widget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
@@ -38,6 +39,17 @@ use vova07\imperavi\Widget;
     <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'category_id')->textInput() ?>
+
+    <?= $form->field($model, 'tags')->widget(Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\common\models\Tag::find()->all(), 'id', 'title'),
+        'language' => 'ru',
+        'options' => ['placeholder' => 'Select tags ...', 'multiple' => true],
+        'pluginOptions' => [
+            'allowClear' => true,
+            'tags' => true,
+            'maximumInputLength' => 10
+        ],
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

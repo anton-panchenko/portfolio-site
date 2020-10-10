@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
 
-//            'id',
+            'id',
 //            'meta_title',
 //            'meta_description:ntext',
             'url:text',
@@ -41,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'user_id',
             'category_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
