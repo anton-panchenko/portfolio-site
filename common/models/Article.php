@@ -2,8 +2,10 @@
 
 namespace common\models;
 
+use phpDocumentor\Reflection\Types\This;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "article".
@@ -28,6 +30,8 @@ use yii\behaviors\TimestampBehavior;
  */
 class Article extends \yii\db\ActiveRecord
 {
+    public $tags_array;
+
     /**
      * {@inheritdoc}
      */
@@ -55,6 +59,7 @@ class Article extends \yii\db\ActiveRecord
             [['url'], 'unique'],
             [['status', 'created_at', 'updated_at', 'viewed', 'user_id', 'category_id'], 'integer'],
             [['meta_title', 'url', 'title', 'image'], 'string', 'max' => 255],
+            [['tags_array'], 'safe'],
         ];
     }
 
@@ -78,6 +83,9 @@ class Article extends \yii\db\ActiveRecord
             'viewed' => 'Viewed',
             'user_id' => 'Автор',
             'category_id' => 'Категория',
+            'tags_array' => 'Теги',
+            'tagsAsString' => 'Теги',
+            'author.username' => 'Автор',
         ];
     }
 
@@ -125,5 +133,50 @@ class Article extends \yii\db\ActiveRecord
     public function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('articleTags');
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->tags_array = $this->tags;
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()){
+            ArticleTag::deleteAll(['article_id' => $this->id]);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getTagsAsString()
+    {
+        $arr = ArrayHelper::map($this->tags, 'id', 'title');
+        return implode(', ', $arr);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        $arr = ArrayHelper::map($this->tags, 'id', 'id');
+        if (is_array($this->tags_array)){
+            foreach ($this->tags_array as $one){
+                if (!in_array($one, $arr)){
+                    $model = new ArticleTag();
+                    $model->article_id = $this->id;
+                    $model->tag_id = $one;
+                    $model->save();
+                }
+                if (isset($arr[$one])){
+                    unset($arr[$one]);
+                }
+            }
+            ArticleTag::deleteAll(['tag_id' => $arr]);
+        } else {
+            ArticleTag::deleteAll(['article_id' => $this->id]);
+        }
     }
 }

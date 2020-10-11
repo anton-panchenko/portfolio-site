@@ -8,6 +8,7 @@ use yii\widgets\LinkPager;
 /* @var $pages \frontend\controllers\BlogController */
 /* @var $categories \frontend\controllers\BlogController */
 /* @var $popularArticles \frontend\controllers\BlogController */
+/* @var $tags \frontend\controllers\BlogController */
 
 $this->title = 'Блог';
 
@@ -29,8 +30,9 @@ $this->title = 'Блог';
             <div class="blogPage_gallery__item">
                 <div class="blogPage_gallery__item_header">
                     <div class="blogPage_gallery__item_header__tags">
-                        <a href="404.html">#Yii2</a>
-                        <a href="404.html">#PHP</a>
+                        <?php foreach ($article->tags as $tag): ?>
+                        <a href="404.html">#<?= $tag->title ?></a>
+                        <?php endforeach; ?>
                     </div>
                     <a href="blog/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
                         <?= $article->title ?>
@@ -99,11 +101,9 @@ $this->title = 'Блог';
                     Теги
                 </div>
                 <div class="blogPage_sidebar__tags_items">
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#Yii2</a>
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#PHP</a>
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#HTML5</a>
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#CSS</a>
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#JS</a>
+                    <?php foreach ($tags as $tag): ?>
+                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#<?= $tag->title ?></a>
+                    <?php endforeach; ?>
                 </div>
             </div><!-- end blogPage_sidebar__tags -->
         </div><!-- end blogPage_sidebar -->

@@ -19,8 +19,9 @@ $this->title = $article->title;
         </div><!-- end section_title -->
         <div class="post_header">
             <div class="post_header__tags">
-                <a href="404.html">#Yii2</a>
-                <a href="404.html">#PHP</a>
+                <?php foreach ($article->tags as $tag): ?>
+                <a href="404.html">#<?= $tag->title ?></a>
+                <?php endforeach; ?>
             </div><!-- end post_header__tags -->
             <h2 class="post_header__title">
                 <?= $article->title ?>

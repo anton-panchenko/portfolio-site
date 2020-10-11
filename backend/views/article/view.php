@@ -41,6 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'viewed',
             'user_id',
             'category_id',
+            'author.username',
+            'tagsAsString',
         ],
     ]) ?>
 

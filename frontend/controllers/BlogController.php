@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Article;
 use common\models\Category;
+use common\models\Tag;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
@@ -22,8 +23,9 @@ class BlogController extends \yii\web\Controller
 
         $categories = Category::find()->all();
         $popularArticles = Article::find()->where(['status' => 1])->orderBy('viewed DESC')->limit(3)->all();
+        $tags = Tag::find()->all();
 
-        return $this->render('index', compact('articles','categories', 'pages', 'popularArticles'));
+        return $this->render('index', compact('articles','categories', 'pages', 'popularArticles', 'tags'));
 
 //        $articles = Article::find()->andWhere(['status' => 1])->orderBy('id DESC')->all();
 //        return $this->render('index', ['articles' => $articles]);

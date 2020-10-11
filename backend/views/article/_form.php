@@ -40,7 +40,7 @@ use common\helpers\StatusHelper;
 
     <?= $form->field($model, 'category_id')->textInput() ?>
 
-    <?= $form->field($model, 'tags')->widget(Select2::classname(), [
+    <?= $form->field($model, 'tags_array')->widget(Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\common\models\Tag::find()->all(), 'id', 'title'),
         'language' => 'ru',
         'options' => ['placeholder' => 'Select tags ...', 'multiple' => true],
