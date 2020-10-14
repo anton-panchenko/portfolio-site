@@ -4,7 +4,10 @@ namespace frontend\controllers;
 
 use common\models\Article;
 use common\models\Category;
+use common\models\Comment;
+use common\models\CommentForm;
 use common\models\Tag;
+use Yii;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
@@ -26,9 +29,6 @@ class BlogController extends \yii\web\Controller
         $tags = Tag::find()->all();
 
         return $this->render('index', compact('articles','categories', 'pages', 'popularArticles', 'tags'));
-
-//        $articles = Article::find()->andWhere(['status' => 1])->orderBy('id DESC')->all();
-//        return $this->render('index', ['articles' => $articles]);
     }
 
     public function actionArticle($url)
@@ -36,9 +36,28 @@ class BlogController extends \yii\web\Controller
         $this->layout = 'portfolio';
 
         if ($article = Article::find()->andWhere(['url' => $url])->one()) {
-            return $this->render('article', ['article' => $article]);
+
+            $tags = $article->tags;
+            $comments = $article->comments;
+            $commentForm = new CommentForm();
+
+            return $this->render('article', compact('article', 'tags', 'comments', 'commentForm'));
         }
         throw new NotFoundHttpException('Такой статьи нет.');
+    }
+
+    public function actionComment($id)
+    {
+//        $model = new CommentForm();
+
+//        if (\Yii::$app->request->post()){
+//            $model->load(Yii::$app->request->post());
+//
+//            if ($model->saveComment($id)){
+//
+//                return $this->redirect(['blog/article', 'id' => $id]);
+//            }
+//        }
     }
 
 }

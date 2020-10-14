@@ -438,6 +438,9 @@ $this->title = 'Портфолио | Главная';
                 </a>
             </div><!-- end contacts_content__info_socials -->
         </div><!-- end contacts_content__info -->
+
+
+
         <div class="contacts_content__form">
             <form action="sendMail.php" method="post">
                 <input type="text" name="name" class="input-text" placeholder="Имя" required>
@@ -447,5 +450,8 @@ $this->title = 'Портфолио | Главная';
                 <input type="submit" class="btn btn-dark" value="Отправить">
             </form>
         </div><!-- end contacts_content__form -->
+
+
+
     </div><!-- end contacts_content -->
 </section><!-- end contacts -->

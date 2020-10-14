@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "comment".
@@ -12,6 +13,8 @@ use Yii;
  * @property int|null $user_id
  * @property int|null $article_id
  * @property int|null $status
+ * @property int|null $created_at
+ * @property int|null $updated_at
  *
  * @property Article $article
  * @property User $user
@@ -26,6 +29,14 @@ class Comment extends \yii\db\ActiveRecord
         return 'comment';
     }
 
+    public function behaviors()
+    {
+        parent::behaviors();
+        return [
+            TimestampBehavior::className()
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +47,7 @@ class Comment extends \yii\db\ActiveRecord
             [['text'], 'string', 'max' => 255],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['created_at', 'updated_at'], 'safe']
         ];
     }
 
@@ -50,6 +62,8 @@ class Comment extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'article_id' => 'Article ID',
             'status' => 'Status',
+            'created_at' => 'Created_at',
+            'updated_at' => 'Updated_at',
         ];
     }
 

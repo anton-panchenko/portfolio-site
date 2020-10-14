@@ -1,7 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $article \frontend\controllers\BlogController */
+/* @var $article \common\models\Article */
+/* @var $tags \common\models\Tag */
+/* @var $comments \common\models\Comment */
 
 $this->title = $article->title;
 
@@ -19,7 +21,7 @@ $this->title = $article->title;
         </div><!-- end section_title -->
         <div class="post_header">
             <div class="post_header__tags">
-                <?php foreach ($article->tags as $tag): ?>
+                <?php foreach ($tags as $tag): ?>
                 <a href="404.html">#<?= $tag->title ?></a>
                 <?php endforeach; ?>
             </div><!-- end post_header__tags -->
@@ -54,93 +56,55 @@ $this->title = $article->title;
             <h3 class="post_comments__title">
                 Комментарии
             </h3><!-- end post_comments__title -->
-            <div class="post_comments__comment">
-                <div class="post_comments__comment_head">
-                    <div class="post_comments__comment_head__img">
-                        <i class="icon-user"></i>
-                    </div>
-                    <h5 class="post_comments__comment_head__username">
-                        Максим Квач
-                    </h5>
-                    <p class="post_comments__comment_head__addingTime">
-                        25.09.2020 20:20
-                    </p>
-                    <a href="404.html" class="post_comments__comment_head__answerBtn">
-                        Ответить
-                    </a>
-                </div><!-- end post_comments__comment_head -->
-                <p class="post_comments__comment_text">
-                    Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения соответствующий условий активизации. Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития.
-                </p><!-- end post_comments__comment_text -->
-                <div class="post_comments__subcomment">
-                    <div class="post_comments__comment_head">
-                        <div class="post_comments__comment_head__img">
-                            <i class="icon-user"></i>
-                        </div>
-                        <h5 class="post_comments__comment_head__username">
-                            Максим Квач
-                        </h5>
-                        <p class="post_comments__comment_head__addingTime">
-                            25.09.2020 20:20
-                        </p>
-                        <a href="404.html" class="post_comments__comment_head__answerBtn">
-                            Ответить
-                        </a>
-                    </div><!-- end post_comments__comment_head -->
-                    <p class="post_comments__comment_text">
-                        Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения соответствующий условий активизации. Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития.
-                    </p><!-- end post_comments__comment_text -->
-                    <div class="post_comments__subcomment">
+
+            <?php if (!empty($comments)): ?>
+                <?php foreach ($comments as $comment): ?>
+                    <div class="post_comments__comment">
                         <div class="post_comments__comment_head">
                             <div class="post_comments__comment_head__img">
                                 <i class="icon-user"></i>
                             </div>
                             <h5 class="post_comments__comment_head__username">
-                                Максим Квач
+                                <?= $comment->user->username ?>
                             </h5>
                             <p class="post_comments__comment_head__addingTime">
-                                25.09.2020 20:20
+                                <?= Yii::$app->formatter->asDate($comment->updated_at, 'php:d / m / Y') ?>
                             </p>
-                            <a href="404.html" class="post_comments__comment_head__answerBtn">
-                                Ответить
-                            </a>
                         </div><!-- end post_comments__comment_head -->
                         <p class="post_comments__comment_text">
-                            Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения соответствующий условий активизации. Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития.
+                            <?= $comment->text ?>
                         </p><!-- end post_comments__comment_text -->
-                    </div><!-- end post_comments__subcomment -->
-                </div><!-- end post_comments__subcomment -->
-            </div><!-- end post_comments__comment -->
-            <div class="post_comments__comment">
-                <div class="post_comments__comment_head">
-                    <div class="post_comments__comment_head__img">
-                        <i class="icon-user"></i>
-                    </div>
-                    <h5 class="post_comments__comment_head__username">
-                        Максим Квач
-                    </h5>
-                    <p class="post_comments__comment_head__addingTime">
-                        25.09.2020 20:20
-                    </p>
-                    <a href="404.html" class="post_comments__comment_head__answerBtn">
-                        Ответить
-                    </a>
-                </div><!-- end post_comments__comment_head -->
-                <p class="post_comments__comment_text">
-                    Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения соответствующий условий активизации. Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития.
-                </p><!-- end post_comments__comment_text -->
-            </div><!-- end post_comments__comment -->
+                    </div><!-- end post_comments__comment -->
+
+                <?php endforeach; ?>
+            <?php endif; ?>
+
         </div><!-- end post_comments -->
         <div class="post_form">
             <h3 class="post_form__title">
                 Добавить комментарий
             </h3>
-            <form action="#" method="post" class="post_form__item">
-                <input type="text" name="name" class="input-text" placeholder="Имя">
-                <input type="text" name="email" class="input-text" placeholder="Email">
-                <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>
-                <input type="submit" class="btn btn-dark" value="Добавить">
-            </form><!-- end post_form__item -->
+
+            <?php $form = \yii\widgets\ActiveForm::begin([
+                    'action' => ['blog/comment', 'id' => 'article_id'],
+                    'options' => ['class' => 'post_form__item', 'role' => 'form']
+            ]) ?>
+
+            <input type="text" name="name" class="input-text" placeholder="Имя">
+            <input type="text" name="email" class="input-text" placeholder="Email">
+            <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>
+            <input type="submit" class="btn btn-dark" value="Добавить">
+
+            <?php \yii\widgets\ActiveForm::end(); ?>
+
+<!--            <form action="#" method="post" class="post_form__item">-->
+<!--                <input type="text" name="name" class="input-text" placeholder="Имя">-->
+<!--                <input type="text" name="email" class="input-text" placeholder="Email">-->
+<!--                <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>-->
+<!--                <input type="submit" class="btn btn-dark" value="Добавить">-->
+<!--            </form><!-- end post_form__item -->-->
+
+
         </div><!-- end post_form -->
     </div><!-- end post_wrap -->
 </div><!-- end post -->
