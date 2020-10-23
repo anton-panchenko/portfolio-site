@@ -1,9 +1,12 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $contactForm \frontend\models\ContactForm */
 
 $this->title = 'Портфолио | Главная';
-?>
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm; ?>
 
 <header class="section header" id="blockHeader">
     <div class="header_container">
@@ -439,17 +442,25 @@ $this->title = 'Портфолио | Главная';
             </div><!-- end contacts_content__info_socials -->
         </div><!-- end contacts_content__info -->
 
-
-
         <div class="contacts_content__form">
-            <form action="sendMail.php" method="post">
-                <input type="text" name="name" class="input-text" placeholder="Имя" required>
-                <input type="text" name="email" class="input-text" placeholder="Email" required>
-                <input type="text" name="subject" class="input-text" placeholder="Тема" required>
-                <textarea name="message" class="input-textarea" placeholder="Сообщение" required></textarea><br>
-                <input type="submit" class="btn btn-dark" value="Отправить">
-            </form>
-        </div><!-- end contacts_content__form -->
+            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+            <?= $form->field($contactForm, 'name')->textInput(['autofocus' => true, 'class' => 'input-text', 'placeholder' => 'Имя'])->label(false) ?>
+
+            <?= $form->field($contactForm, 'email')->textInput(['class' => 'input-text', 'placeholder' => 'Email'])->label(false) ?>
+
+            <?= $form->field($contactForm, 'subject')->textInput(['class' => 'input-text', 'placeholder' => 'Тема'])->label(false) ?>
+
+            <?= $form->field($contactForm, 'body')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Сообщение'])->label(false) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Отправить', ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
+
+
 
 
 

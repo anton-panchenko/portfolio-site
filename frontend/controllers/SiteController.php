@@ -76,7 +76,9 @@ class SiteController extends Controller
     {
         $this->layout = 'main';
 
-        return $this->render('index');
+        $contactForm = new ContactForm();
+
+        return $this->render('index', compact('contactForm'));
     }
 
     public function actionPortfolio()

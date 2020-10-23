@@ -4,6 +4,10 @@
 /* @var $article \common\models\Article */
 /* @var $tags \common\models\Tag */
 /* @var $comments \common\models\Comment */
+/* @var $model \common\models\Comment */
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = $article->title;
 
@@ -53,11 +57,12 @@ $this->title = $article->title;
             </a><!-- end post_links__next -->
         </div><!-- end post_links -->
         <div class="post_comments">
-            <h3 class="post_comments__title">
-                Комментарии
-            </h3><!-- end post_comments__title -->
 
             <?php if (!empty($comments)): ?>
+                <h3 class="post_comments__title">
+                    Комментарии
+                </h3><!-- end post_comments__title -->
+
                 <?php foreach ($comments as $comment): ?>
                     <div class="post_comments__comment">
                         <div class="post_comments__comment_head">
@@ -85,24 +90,25 @@ $this->title = $article->title;
                 Добавить комментарий
             </h3>
 
-            <?php $form = \yii\widgets\ActiveForm::begin([
-                    'action' => ['blog/comment', 'id' => 'article_id'],
+            <?php $form = ActiveForm::begin([
+                    'action' => ['blog/comment/'.$article->id],
                     'options' => ['class' => 'post_form__item', 'role' => 'form']
             ]) ?>
 
-            <input type="text" name="name" class="input-text" placeholder="Имя">
-            <input type="text" name="email" class="input-text" placeholder="Email">
-            <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>
-            <input type="submit" class="btn btn-dark" value="Добавить">
+            <?= $form->field($model, 'text')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Комментарий'])->label(false) ?>
 
-            <?php \yii\widgets\ActiveForm::end(); ?>
+            <div class="form-group">
+                <?= Html::submitButton('Отправить', ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
 
 <!--            <form action="#" method="post" class="post_form__item">-->
 <!--                <input type="text" name="name" class="input-text" placeholder="Имя">-->
 <!--                <input type="text" name="email" class="input-text" placeholder="Email">-->
 <!--                <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>-->
 <!--                <input type="submit" class="btn btn-dark" value="Добавить">-->
-<!--            </form><!-- end post_form__item -->-->
+<!--            </form> end post_form__item -->
 
 
         </div><!-- end post_form -->

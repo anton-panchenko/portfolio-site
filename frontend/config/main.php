@@ -44,6 +44,7 @@ return [
             'rules' => [
                 'blog/<url>' => 'blog/article',
                 'blog' => 'blog/index',
+                'blog/comment/<id:[\d]+>' => 'blog/comment',
             ],
         ],
     ],

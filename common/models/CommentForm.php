@@ -28,4 +28,8 @@ class CommentForm extends Model
         return $comment->save();
     }
 
+//    public function save()
+//    {
+//    }
+
 }

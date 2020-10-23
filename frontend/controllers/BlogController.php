@@ -13,9 +13,11 @@ use yii\web\NotFoundHttpException;
 
 class BlogController extends \yii\web\Controller
 {
+    public $layout = 'portfolio';
+
     public function actionIndex()
     {
-        $this->layout = 'portfolio';
+//        $this->layout = 'portfolio';
 
         $query = Article::find()->where(['status' => 1])->orderBy('id DESC');
         $countQuery = clone $query;
@@ -33,21 +35,31 @@ class BlogController extends \yii\web\Controller
 
     public function actionArticle($url)
     {
-        $this->layout = 'portfolio';
+//        $this->layout = 'portfolio';
 
         if ($article = Article::find()->andWhere(['url' => $url])->one()) {
 
             $tags = $article->tags;
             $comments = $article->comments;
-            $commentForm = new CommentForm();
+            $model = new Comment();
 
-            return $this->render('article', compact('article', 'tags', 'comments', 'commentForm'));
+            return $this->render('article', compact('article', 'tags', 'comments', 'model'));
         }
         throw new NotFoundHttpException('Такой статьи нет.');
     }
 
     public function actionComment($id)
     {
+        $model = new CommentForm();
+
+        if ($model->load(Yii::$app->request->post())){
+
+            if ($model->validate() && $model->saveComment($id)){
+                return $this->goBack();
+            }
+
+        }
+
 //        $model = new CommentForm();
 
 //        if (\Yii::$app->request->post()){
