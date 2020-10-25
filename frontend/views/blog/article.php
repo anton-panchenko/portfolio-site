@@ -4,7 +4,7 @@
 /* @var $article \common\models\Article */
 /* @var $tags \common\models\Tag */
 /* @var $comments \common\models\Comment */
-/* @var $model \common\models\Comment */
+/* @var $form_model \common\models\Comment */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -95,21 +95,13 @@ $this->title = $article->title;
                     'options' => ['class' => 'post_form__item', 'role' => 'form']
             ]) ?>
 
-            <?= $form->field($model, 'text')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Комментарий'])->label(false) ?>
+            <?= $form->field($form_model, 'text')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Комментарий'])->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Отправить', ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
-
-<!--            <form action="#" method="post" class="post_form__item">-->
-<!--                <input type="text" name="name" class="input-text" placeholder="Имя">-->
-<!--                <input type="text" name="email" class="input-text" placeholder="Email">-->
-<!--                <textarea name="message" class="input-textarea" placeholder="Комментарий"></textarea>-->
-<!--                <input type="submit" class="btn btn-dark" value="Добавить">-->
-<!--            </form> end post_form__item -->
-
 
         </div><!-- end post_form -->
     </div><!-- end post_wrap -->

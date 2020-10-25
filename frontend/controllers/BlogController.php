@@ -2,10 +2,10 @@
 
 namespace frontend\controllers;
 
+use Codeception\PHPUnit\ResultPrinter\HTML;
 use common\models\Article;
 use common\models\Category;
-use common\models\Comment;
-use common\models\CommentForm;
+use frontend\models\CommentForm;
 use common\models\Tag;
 use Yii;
 use yii\data\Pagination;
@@ -17,8 +17,6 @@ class BlogController extends \yii\web\Controller
 
     public function actionIndex()
     {
-//        $this->layout = 'portfolio';
-
         $query = Article::find()->where(['status' => 1])->orderBy('id DESC');
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
@@ -35,41 +33,28 @@ class BlogController extends \yii\web\Controller
 
     public function actionArticle($url)
     {
-//        $this->layout = 'portfolio';
-
         if ($article = Article::find()->andWhere(['url' => $url])->one()) {
 
             $tags = $article->tags;
             $comments = $article->comments;
-            $model = new Comment();
+            $form_model = new CommentForm();
 
-            return $this->render('article', compact('article', 'tags', 'comments', 'model'));
+            return $this->render('article', compact('article', 'tags', 'comments', 'form_model'));
         }
         throw new NotFoundHttpException('Такой статьи нет.');
     }
 
     public function actionComment($id)
     {
-        $model = new CommentForm();
+        $form_model = new CommentForm();
 
-        if ($model->load(Yii::$app->request->post())){
+        if($form_model->load(Yii::$app->request->post() )){
 
-            if ($model->validate() && $model->saveComment($id)){
-                return $this->goBack();
+            if ($form_model->saveComment($id) && $form_model->validate()){
+                return $this->redirect(Yii::$app->request->referrer);
             }
 
         }
-
-//        $model = new CommentForm();
-
-//        if (\Yii::$app->request->post()){
-//            $model->load(Yii::$app->request->post());
-//
-//            if ($model->saveComment($id)){
-//
-//                return $this->redirect(['blog/article', 'id' => $id]);
-//            }
-//        }
     }
 
 }
