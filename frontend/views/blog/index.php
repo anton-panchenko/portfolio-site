@@ -34,7 +34,7 @@ $this->title = 'Блог';
                         <a href="404.html">#<?= $tag->title ?></a>
                         <?php endforeach; ?>
                     </div>
-                    <a href="blog/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
+                    <a href="article/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
                         <?= $article->title ?>
                     </a>
                 </div><!-- end blog_gallery__item_header -->
@@ -86,7 +86,7 @@ $this->title = 'Блог';
                         <a href="404.html" class="blogPage_sidebar__popPosts_items__item_date">
                             <?= Yii::$app->formatter->asDate($popularArticle->updated_at, 'php:d / m / Y') ?>
                         </a>
-                        <a href="post.html" class="blogPage_sidebar__popPosts_items__item_title">
+                        <a href="article/<?= $popularArticle->url ?>" class="blogPage_sidebar__popPosts_items__item_title">
                             <?= $popularArticle->title ?>
                         </a>
                         <a href="404.html" class="blogPage_sidebar__popPosts_items__item_comments">

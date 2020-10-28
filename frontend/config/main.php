@@ -43,9 +43,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'blog/<url>' => 'blog/article',
                 'blog' => 'blog/index',
-                'blog/comment/<id:[\d]+>' => 'blog/comment',
+                'comment/add/<id:[\d]+>' => 'comment/add',
+                'article/<url:\w+>' => 'article/index'
             ],
         ],
     ],

@@ -26,7 +26,7 @@ $this->title = $article->title;
         <div class="post_header">
             <div class="post_header__tags">
                 <?php foreach ($tags as $tag): ?>
-                <a href="404.html">#<?= $tag->title ?></a>
+                    <a href="404.html">#<?= $tag->title ?></a>
                 <?php endforeach; ?>
             </div><!-- end post_header__tags -->
             <h2 class="post_header__title">
@@ -91,8 +91,8 @@ $this->title = $article->title;
             </h3>
 
             <?php $form = ActiveForm::begin([
-                    'action' => ['blog/comment/'.$article->id],
-                    'options' => ['class' => 'post_form__item', 'role' => 'form']
+                'action' => ['comment/add/'.$article->id],
+                'options' => ['class' => 'post_form__item', 'role' => 'form']
             ]) ?>
 
             <?= $form->field($form_model, 'text')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Комментарий'])->label(false) ?>
