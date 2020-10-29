@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $contactForm \frontend\models\ContactForm */
 
-$this->title = 'Портфолио | Главная';
+$this->title = Yii::t('main', 'Portfolio | Home');
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm; ?>

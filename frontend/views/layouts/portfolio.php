@@ -33,11 +33,14 @@ AppAsset::register($this);
 <div class="app" id="app">
 
     <div class="head_menu" id="head_menu">
-        <a href="/#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
-        <a href="/#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
-        <a href="/#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
-        <a href="/#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
-        <a href="/#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
+        <?= Html::a(Yii::t('main', 'About'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'CV'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Portfolio'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Blog'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Contacts'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+
+        <?= Html::a('ru', ['blog/index', 'language' => 'ru'], ['class' => 'fixed_menu__item']) ?>
+        <?= Html::a('en', ['blog/index', 'language' => 'en'], ['class' => 'fixed_menu__item']) ?>
     </div><!-- end head_menu -->
 
     <div class="fixed_menu">

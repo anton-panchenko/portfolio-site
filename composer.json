@@ -21,7 +21,8 @@
         "vova07/yii2-imperavi-widget": "*",
         "dmstr/yii2-adminlte-asset": "^2.1",
         "noam148/yii2-image-manager": "*",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "codemix/yii2-localeurls": "^1.7"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

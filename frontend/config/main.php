@@ -12,7 +12,6 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'language' => 'ru',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -24,7 +23,6 @@ return [
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
         'log' => [
@@ -40,12 +38,30 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 'blog' => 'blog/index',
                 'comment/add/<id:[\d]+>' => 'comment/add',
                 'article/<url:\w+>' => 'article/index'
+            ],
+            'languages' => ['en', 'ru'],
+        ],
+        'i18n' => [
+            'translations' => [
+                'blog*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+                'main*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+                'model*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
             ],
         ],
     ],

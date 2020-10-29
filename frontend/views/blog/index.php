@@ -20,7 +20,7 @@ $this->title = 'Блог';
             <img src="/img/svg/blog.svg" alt="section_img">
         </div>
         <h2 class="section_title__text">
-            Блог
+            <?= Yii::t('blog', 'Blog') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="blogPage_wrap">
@@ -65,7 +65,7 @@ $this->title = 'Блог';
         <div class="blogPage_sidebar">
             <div class="blogPage_sidebar__categories">
                 <h3 class="blogPage_sidebar__categories_title">
-                    Категории
+                    <?= Yii::t('blog', 'Categories') ?>
                 </h3><!-- end blogPage_sidebar__categories_title -->
                 <div class="blogPage_sidebar__categories_items">
                     <?php foreach ($categories as $category): ?>

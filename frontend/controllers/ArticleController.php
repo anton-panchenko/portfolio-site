@@ -6,6 +6,7 @@ namespace frontend\controllers;
 
 use frontend\models\CommentForm;
 use frontend\models\repositories\ArticleRepository;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 class ArticleController extends \yii\web\Controller
@@ -22,6 +23,6 @@ class ArticleController extends \yii\web\Controller
 
             return $this->render('index', compact('article', 'tags', 'comments', 'form_model'));
         }
-        throw new NotFoundHttpException('Такой статьи нет.');
+        throw new NotFoundHttpException(Yii::t('model', 'article_not_found'));
     }
 }
