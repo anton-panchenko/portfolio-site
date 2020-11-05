@@ -3,13 +3,14 @@
 
 namespace frontend\controllers;
 
-
-use frontend\models\CommentForm;
-use frontend\models\repositories\ArticleRepository;
 use Yii;
+use yii\web\Controller;
+use frontend\models\CommentForm;
 use yii\web\NotFoundHttpException;
+use frontend\models\repositories\ArticleRepository;
 
-class ArticleController extends \yii\web\Controller
+
+class ArticleController extends Controller
 {
     public $layout = 'portfolio';
 
@@ -17,7 +18,7 @@ class ArticleController extends \yii\web\Controller
     {
         if ($article = ArticleRepository::getByUrl($url)) {
 
-            $tags = $article->tags;
+            $tags = $article->getTagsModel();
             $comments = $article->comments;
             $form_model = new CommentForm();
 

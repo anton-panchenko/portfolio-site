@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'language' => 'en',
     'id' => 'app-frontend',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__),

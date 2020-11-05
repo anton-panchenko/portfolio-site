@@ -135,6 +135,11 @@ class Article extends \yii\db\ActiveRecord
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('articleTags');
     }
 
+    public function getTagsModel()
+    {
+        return $this->tags;
+    }
+
     public function afterFind()
     {
         parent::afterFind();
@@ -144,6 +149,7 @@ class Article extends \yii\db\ActiveRecord
     public function beforeDelete()
     {
         if (parent::beforeDelete()){
+
             ArticleTag::deleteAll(['article_id' => $this->id]);
             return true;
         } else {
@@ -153,7 +159,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function getTagsAsString()
     {
-        $arr = ArrayHelper::map($this->tags, 'id', 'title');
+        $arr = ArrayHelper::map($this->getTagsModel(), 'id', 'title');
         return implode(', ', $arr);
     }
 
@@ -162,15 +168,19 @@ class Article extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
 
         $arr = ArrayHelper::map($this->tags, 'id', 'id');
+
         if (is_array($this->tags_array)){
+
             foreach ($this->tags_array as $one){
                 if (!in_array($one, $arr)){
+
                     $model = new ArticleTag();
                     $model->article_id = $this->id;
                     $model->tag_id = $one;
                     $model->save();
                 }
                 if (isset($arr[$one])){
+
                     unset($arr[$one]);
                 }
             }

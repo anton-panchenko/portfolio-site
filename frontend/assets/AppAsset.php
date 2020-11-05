@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/style.css',
+        'css/custom.css',
     ];
     public $js = [
         'js/isotope.js',

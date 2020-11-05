@@ -2,5 +2,5 @@
 
 return [
     'Blog' => 'Блог',
-    'Categories' => 'Котегории',
+    'Categories' => 'Категории',
 ];

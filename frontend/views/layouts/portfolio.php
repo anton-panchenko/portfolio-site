@@ -6,9 +6,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\widgets\multiLang\MultiLang;
 
 AppAsset::register($this);
 ?>
@@ -39,16 +41,20 @@ AppAsset::register($this);
         <?= Html::a(Yii::t('main', 'Blog'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
         <?= Html::a(Yii::t('main', 'Contacts'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
 
-        <?= Html::a('ru', ['blog/index', 'language' => 'ru'], ['class' => 'fixed_menu__item']) ?>
-        <?= Html::a('en', ['blog/index', 'language' => 'en'], ['class' => 'fixed_menu__item']) ?>
+        <?= MultiLang::widget(); ?>
+
     </div><!-- end head_menu -->
 
     <div class="fixed_menu">
-        <a href="/#blockAbout" class="fixed_menu__item redirectLink">Обо мне</a>
-        <a href="/#blockResume" class="fixed_menu__item redirectLink">Резюме</a>
-        <a href="/#blockWorks" class="fixed_menu__item redirectLink">Портфолио</a>
-        <a href="/#blockBlog" class="fixed_menu__item redirectLink">Блог</a>
-        <a href="/#blockContacts" class="fixed_menu__item redirectLink">Контакты</a>
+
+        <?= Html::a(Yii::t('main', 'About'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'CV'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Portfolio'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Blog'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+        <?= Html::a(Yii::t('main', 'Contacts'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+
+        <?= MultiLang::widget(); ?>
+        
     </div><!-- end fixed_menu -->
 
     <a href="#head_menu" class="scrollToTop" id="scrollToTop">
