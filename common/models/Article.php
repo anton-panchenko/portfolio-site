@@ -2,9 +2,11 @@
 
 namespace common\models;
 
+use common\helpers\StatusHelper;
 use phpDocumentor\Reflection\Types\This;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -31,6 +33,8 @@ use yii\helpers\ArrayHelper;
 class Article extends \yii\db\ActiveRecord
 {
     public $tags_array;
+    const STATUS_ACTIVE = 1;
+    const STATUS_DRAFT = 0;
 
     /**
      * {@inheritdoc}
@@ -135,11 +139,6 @@ class Article extends \yii\db\ActiveRecord
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('articleTags');
     }
 
-    public function getTagsModel()
-    {
-        return $this->tags;
-    }
-
     public function afterFind()
     {
         parent::afterFind();
@@ -188,5 +187,19 @@ class Article extends \yii\db\ActiveRecord
         } else {
             ArticleTag::deleteAll(['article_id' => $this->id]);
         }
+    }
+
+    public static function find()
+    {
+        return new ArticleQuery(get_called_class());
+    }
+}
+
+class ArticleQuery extends ActiveQuery
+{
+    public function active()
+    {
+        $this->andWhere(['status' => Article::STATUS_ACTIVE]);
+        return $this;
     }
 }

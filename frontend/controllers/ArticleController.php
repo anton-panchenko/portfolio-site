@@ -19,7 +19,7 @@ class ArticleController extends Controller
         if ($article = ArticleRepository::getByUrl($url)) {
 
             $tags = $article->getTagsModel();
-            $comments = $article->comments;
+            $comments = $article->getCommentsModel();
             $form_model = new CommentForm();
 
             return $this->render('index', compact('article', 'tags', 'comments', 'form_model'));

@@ -8,4 +8,6 @@ return [
     'Contacts' => 'Контакты',
 
     'Portfolio | Home' => 'Портфолио | Главная',
+    'Portfolio | Blog' => 'Портфолио | Блог',
+    'Portfolio | Article' => 'Портфолио | Статья',
 ];

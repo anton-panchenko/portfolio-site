@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = $article->title;
+$this->title = Yii::t('main', 'Portfolio | Article');
 
 ?>
 
@@ -20,7 +20,7 @@ $this->title = $article->title;
                 <img src="/img/svg/blog.svg" alt="section_img">
             </div>
             <h2 class="section_title__text">
-                Блог
+                <?= Yii::t('blog', 'Blog') ?>
             </h2>
         </div><!-- end section_title -->
         <div class="post_header">
@@ -49,10 +49,10 @@ $this->title = $article->title;
         <div class="post_links">
             <a href="404.html" class="post_links__item">
                 <i class="icon-left"></i>
-                <p>Предыдущая статья</p>
+                <p><?= Yii::t('blog', 'Previous article') ?></p>
             </a><!-- end post_links__previous -->
             <a href="404.html" class="post_links__item">
-                <p>Следующая статья</p>
+                <p><?= Yii::t('blog', 'Next article') ?></p>
                 <i class="icon-right"></i>
             </a><!-- end post_links__next -->
         </div><!-- end post_links -->
@@ -60,7 +60,7 @@ $this->title = $article->title;
 
             <?php if (!empty($comments)): ?>
                 <h3 class="post_comments__title">
-                    Комментарии
+                    <?= Yii::t('blog', 'Comments') ?>
                 </h3><!-- end post_comments__title -->
 
                 <?php foreach ($comments as $comment): ?>
@@ -87,7 +87,7 @@ $this->title = $article->title;
         </div><!-- end post_comments -->
         <div class="post_form">
             <h3 class="post_form__title">
-                Добавить комментарий
+                <?= Yii::t('blog', 'Add comment') ?>
             </h3>
 
             <?php $form = ActiveForm::begin([
@@ -95,10 +95,12 @@ $this->title = $article->title;
                 'options' => ['class' => 'post_form__item', 'role' => 'form']
             ]) ?>
 
-            <?= $form->field($form_model, 'text')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Комментарий'])->label(false) ?>
+            <?= $form->field($form_model, 'text')->textarea([
+                    'rows' => 6, 'class' => 'input-textarea', 'placeholder' => Yii::t('blog', 'Comment')
+                ])->label(false) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Отправить', ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
+                <?= Html::submitButton(Yii::t('blog', 'Send'), ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

@@ -2,9 +2,9 @@
 
 namespace frontend\widgets\multiLang;
 
-use yii\helpers\Html;
 use Yii;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 ?>
 

@@ -2,16 +2,14 @@
 
 namespace frontend\controllers;
 
-use Codeception\PHPUnit\ResultPrinter\HTML;
-use frontend\models\CommentForm;
-use frontend\models\repositories\ArticleRepository;
-use frontend\models\repositories\CategoryRepository;
-use frontend\models\repositories\TagRepository;
 use Yii;
 use yii\data\Pagination;
-use yii\web\NotFoundHttpException;
+use yii\web\Controller;
+use frontend\models\repositories\TagRepository;
+use frontend\models\repositories\ArticleRepository;
+use frontend\models\repositories\CategoryRepository;
 
-class BlogController extends \yii\web\Controller
+class BlogController extends Controller
 {
     public $layout = 'portfolio';
 
@@ -22,9 +20,8 @@ class BlogController extends \yii\web\Controller
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
         $articles = $query->offset($pages->offset)->limit($pages->limit)->all();
         $categories = CategoryRepository::getAll();
-        $popularArticles = ArticleRepository::getPopular();
         $tags = TagRepository::getAll();
 
-        return $this->render('index', compact('articles','categories', 'pages', 'popularArticles', 'tags'));
+        return $this->render('index', compact('articles','categories', 'pages', 'tags'));
     }
 }

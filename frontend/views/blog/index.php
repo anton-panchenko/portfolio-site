@@ -1,16 +1,16 @@
 <?php
 
-/* @var $this yii\web\View */
 
 use yii\widgets\LinkPager;
+use frontend\widgets\mostPopular\MostPopular;
 
-/* @var $articles \frontend\controllers\BlogController */
-/* @var $pages \frontend\controllers\BlogController */
-/* @var $categories \frontend\controllers\BlogController */
-/* @var $popularArticles \frontend\controllers\BlogController */
-/* @var $tags \frontend\controllers\BlogController */
+/* @var $this yii\web\View */
+/* @var $articles array */
+/* @var $pages array */
+/* @var $categories array */
+/* @var $tags array */
 
-$this->title = 'Блог';
+$this->title = Yii::t('main', 'Portfolio | Blog');
 
 ?>
 
@@ -48,8 +48,13 @@ $this->title = 'Блог';
                     <a href="404.html" class="blogPage_gallery__item_footer__author"><?= $article->category->title ?></a>
                 </div><!-- end blog_gallery__item_footer -->
                 <div class="blogPage_gallery__item_secondfooter">
-                    <a href="404.html" class="blogPage_gallery__item_secondfooter__comments">0 комментариев</a>
-                    <a href="404.html" class="blogPage_gallery__item_secondfooter__readBtn">Читать статью</a>
+                    <a href="404.html" class="blogPage_gallery__item_secondfooter__comments">
+                        <?php $commentCount = count($article->comments); ?>
+                        <?= $commentCount.' '.Yii::t('blog', '{commentCount, plural, one{comment} other{comments}}', ['commentCount' => $commentCount]); ?>
+                    </a>
+                    <a href="404.html" class="blogPage_gallery__item_secondfooter__readBtn">
+                        <?= Yii::t('blog', 'Read article') ?>
+                    </a>
                 </div><!-- end blog_gallery__item_secondfooter -->
             </div><!-- end blog_gallery__item -->
             <?php endforeach; ?>
@@ -76,29 +81,12 @@ $this->title = 'Блог';
                     <?php endforeach; ?>
                 </div><!-- end blogPage_sidebar__categories_items -->
             </div><!-- end blogPage_sidebar__categories -->
-            <div class="blogPage_sidebar__popPosts">
-                <h3 class="blogPage_sidebar__popPosts_title">
-                    Популярные статьи
-                </h3><!-- end blogPage_sidebar__popPosts_title -->
-                <div class="blogPage_sidebar__popPosts_items">
-                    <?php foreach ($popularArticles as $popularArticle): ?>
-                    <div class="blogPage_sidebar__popPosts_items__item">
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_date">
-                            <?= Yii::$app->formatter->asDate($popularArticle->updated_at, 'php:d / m / Y') ?>
-                        </a>
-                        <a href="article/<?= $popularArticle->url ?>" class="blogPage_sidebar__popPosts_items__item_title">
-                            <?= $popularArticle->title ?>
-                        </a>
-                        <a href="404.html" class="blogPage_sidebar__popPosts_items__item_comments">
-                            0 комментариев
-                        </a>
-                    </div><!-- end blogPage_sidebar__popPosts_items__item -->
-                    <?php endforeach; ?>
-                </div><!-- end blogPage_sidebar__popPosts_items -->
-            </div><!-- end blogPage_sidebar__popPosts -->
+
+            <?= MostPopular::widget(); ?>
+
             <div class="blogPage_sidebar__tags">
                 <div class="blogPage_sidebar__tags_title">
-                    Теги
+                    <?= Yii::t('blog', 'Tags') ?>
                 </div>
                 <div class="blogPage_sidebar__tags_items">
                     <?php foreach ($tags as $tag): ?>

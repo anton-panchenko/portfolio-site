@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use frontend\widgets\multiLang\MultiLang;
+use frontend\widgets\navMenu\NavMenu;
 
 AppAsset::register($this);
 ?>
@@ -34,28 +35,15 @@ AppAsset::register($this);
 
 <div class="app" id="app">
 
-    <div class="head_menu" id="head_menu">
-        <?= Html::a(Yii::t('main', 'About'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'CV'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Portfolio'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Blog'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Contacts'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
+    <?= NavMenu::widget([
+        'cssClass' => 'head_menu',
+        'idName' => 'head_menu'
+    ]); ?>
 
-        <?= MultiLang::widget(); ?>
-
-    </div><!-- end head_menu -->
-
-    <div class="fixed_menu">
-
-        <?= Html::a(Yii::t('main', 'About'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'CV'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Portfolio'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Blog'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-        <?= Html::a(Yii::t('main', 'Contacts'), '#', ['class' => 'fixed_menu__item redirectLink']) ?>
-
-        <?= MultiLang::widget(); ?>
-        
-    </div><!-- end fixed_menu -->
+    <?= NavMenu::widget([
+        'cssClass' => 'fixed_menu',
+        'idName' => ''
+    ]); ?>
 
     <a href="#head_menu" class="scrollToTop" id="scrollToTop">
         <i class="icon-up"></i>

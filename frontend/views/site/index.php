@@ -6,7 +6,9 @@
 $this->title = Yii::t('main', 'Portfolio | Home');
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm; ?>
+use yii\widgets\ActiveForm;
+
+?>
 
 <header class="section header" id="blockHeader">
     <div class="header_container">
