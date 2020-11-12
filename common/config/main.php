@@ -22,5 +22,8 @@ return [
             'absoluteUrl' => false,
             'databaseComponent' => 'db' // The used database component by the image manager, this defaults to the Yii::$app->db component
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
 ];

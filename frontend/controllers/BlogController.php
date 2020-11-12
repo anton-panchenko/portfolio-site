@@ -15,12 +15,12 @@ class BlogController extends Controller
 
     public function actionIndex()
     {
-        $query = ArticleRepository::getAllActive();
+        $query = ArticleRepository::getAllActiveArticlesModels();
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
         $articles = $query->offset($pages->offset)->limit($pages->limit)->all();
-        $categories = CategoryRepository::getAll();
-        $tags = TagRepository::getAll();
+        $categories = CategoryRepository::getAllCategoriesModels();
+        $tags = TagRepository::getAllTagsModels();
 
         return $this->render('index', compact('articles','categories', 'pages', 'tags'));
     }

@@ -12,4 +12,9 @@ class CategoryRepository extends Category
     {
         return self::find()->all();
     }
+
+    public static function getAllCategoriesModels()
+    {
+        return self::getAll();
+    }
 }

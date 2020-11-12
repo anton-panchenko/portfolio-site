@@ -12,4 +12,9 @@ class TagRepository extends Tag
     {
         return self::find()->all();
     }
+
+    public static function getAllTagsModels()
+    {
+        return self::getAll();
+    }
 }

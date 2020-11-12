@@ -30,4 +30,14 @@ class ArticleRepository extends Article
     {
         return $this->comments;
     }
+
+    public static function getArticleModelByUrl($url)
+    {
+        return self::getByUrl($url);
+    }
+
+    public static function getAllActiveArticlesModels()
+    {
+        return self::getAllActive();
+    }
 }
