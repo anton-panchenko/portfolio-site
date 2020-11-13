@@ -85,26 +85,34 @@ $this->title = Yii::t('main', 'Portfolio | Article');
             <?php endif; ?>
 
         </div><!-- end post_comments -->
-        <div class="post_form">
-            <h3 class="post_form__title">
-                <?= Yii::t('blog', 'Add comment') ?>
-            </h3>
 
-            <?php $form = ActiveForm::begin([
-                'action' => ['comment/add/'.$article->id],
-                'options' => ['class' => 'post_form__item', 'role' => 'form']
-            ]) ?>
+        <?php if (Yii::$app->user->isGuest): ?>
+            <h1>Guest</h1>
+        <?php else: ?>
 
-            <?= $form->field($form_model, 'text')->textarea([
+            <div class="post_form">
+                <h3 class="post_form__title">
+                    <?= Yii::t('blog', 'Add comment') ?>
+                </h3>
+
+                <?php $form = ActiveForm::begin([
+                    'action' => ['comment/add/'.$article->id],
+                    'options' => ['class' => 'post_form__item', 'role' => 'form']
+                ]) ?>
+
+                <?= $form->field($form_model, 'text')->textarea([
                     'rows' => 6, 'class' => 'input-textarea', 'placeholder' => Yii::t('blog', 'Comment')
                 ])->label(false) ?>
 
-            <div class="form-group">
-                <?= Html::submitButton(Yii::t('blog', 'Send'), ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
-            </div>
+                <div class="form-group">
+                    <?= Html::submitButton(Yii::t('blog', 'Send'), ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
+                </div>
 
-            <?php ActiveForm::end(); ?>
+                <?php ActiveForm::end(); ?>
 
-        </div><!-- end post_form -->
+            </div><!-- end post_form -->
+
+        <?php endif; ?>
+
     </div><!-- end post_wrap -->
 </div><!-- end post -->

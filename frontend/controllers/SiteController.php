@@ -81,14 +81,6 @@ class SiteController extends Controller
         return $this->render('index', compact('contactForm'));
     }
 
-    public function actionPortfolio()
-    {
-        $this->layout = 'portfolio';
-
-        return $this->render('portfolio');
-    }
-
-
     /**
      * Logs in a user.
      *
