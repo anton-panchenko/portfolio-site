@@ -40,4 +40,19 @@ class ArticleRepository extends Article
     {
         return self::getAllActive();
     }
+
+    public static function getByCategory($category_id)
+    {
+        return self::find()->active()->andWhere(['category_id' => $category_id])->orderBy('id DESC');
+    }
+
+    public static function getArticlesModelsByCategory($category_id)
+    {
+        return self::getByCategory($category_id);
+    }
+
+//    public static function getTotalCount()
+//    {
+//        return self::find()->count();
+//    }
 }

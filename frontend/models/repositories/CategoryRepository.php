@@ -17,4 +17,9 @@ class CategoryRepository extends Category
     {
         return self::getAll();
     }
+
+    public static function getTotalCount()
+    {
+        return self::find()->count();
+    }
 }

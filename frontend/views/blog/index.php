@@ -1,6 +1,6 @@
 <?php
 
-
+use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\widgets\mostPopular\MostPopular;
 
@@ -75,10 +75,19 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                 <div class="blogPage_sidebar__categories_items">
                     <?php foreach ($categories as $category): ?>
                     <div class="blogPage_sidebar__categories_items__item">
-                        <a href="404.html" class="blogPage_sidebar__categories_items__item_text"><?= $category->title ?></a>
-<!--                        <p class="blogPage_sidebar__categories_items__item_counter">(2)</p>-->
+                        <?= Html::a($category->title, '/blog/'.$category->id, ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
+                        <p class="blogPage_sidebar__categories_items__item_counter">
+                            (0)
+                        </p>
                     </div><!-- end blogPage_sidebar__categories_items__item -->
                     <?php endforeach; ?>
+                    <div class="blogPage_sidebar__categories_items__item">
+                        <?= Html::a(Yii::t('blog', 'All Articles'), '/blog/index', ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
+                        <p class="blogPage_sidebar__categories_items__item_counter">
+                            (<?= $category->totalCount ?>)
+                        </p>
+                    </div><!-- end blogPage_sidebar__categories_items__item -->
+
                 </div><!-- end blogPage_sidebar__categories_items -->
             </div><!-- end blogPage_sidebar__categories -->
 

@@ -6,3 +6,9 @@
     position: absolute;
     right: 0;
 }
+
+.widget_register {
+    position: absolute;
+    right: 50px;
+    display: flex;
+}

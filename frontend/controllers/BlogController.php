@@ -83,6 +83,18 @@ class BlogController extends Controller
         return $this->render('index', compact('articles','categories', 'pages', 'tags'));
     }
 
+    public function actionCategory($category_id)
+    {
+        $query = ArticleRepository::getArticlesModelsByCategory($category_id);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
+        $articles = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $categories = CategoryRepository::getAllCategoriesModels();
+        $tags = TagRepository::getAllTagsModels();
+
+        return $this->render('index', compact('articles','categories', 'pages', 'tags'));
+    }
+
     /**
      * Logs in a user.
      *

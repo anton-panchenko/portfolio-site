@@ -3,7 +3,9 @@
 
 namespace frontend\widgets\multiLang;
 
-class MultiLang extends \yii\bootstrap\Widget
+use yii\bootstrap\Widget;
+
+class MultiLang extends Widget
 {
     public function init(){}
 

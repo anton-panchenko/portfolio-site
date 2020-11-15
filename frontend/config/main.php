@@ -43,9 +43,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'blog' => 'blog/index',
                 'comment/add/<id:[\d]+>' => 'comment/add',
-                'article/<url:\w+>' => 'article/index'
+                'article/<url:\w+>' => 'article/index',
+                'blog' => 'blog/index',
+                'blog/<category_id:[\d]+>' => 'blog/category',
             ],
             'languages' => ['en', 'ru'],
         ],

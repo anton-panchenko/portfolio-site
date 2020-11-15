@@ -6,6 +6,9 @@ return [
     'Portfolio' => 'Портфолио',
     'Blog' => 'Блог',
     'Contacts' => 'Контакты',
+    'Logout' => 'Выйти',
+    'Login' => 'Войти',
+    'Register' => 'Регистрация',
 
     'Portfolio | Home' => 'Портфолио | Главная',
     'Portfolio | Blog' => 'Портфолио | Блог',

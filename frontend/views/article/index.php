@@ -87,7 +87,7 @@ $this->title = Yii::t('main', 'Portfolio | Article');
         </div><!-- end post_comments -->
 
         <?php if (Yii::$app->user->isGuest): ?>
-            <h1>Guest</h1>
+            <?= Yii::t('blog', 'If you want to leave a comment, please login. If you are not registered, please register.') ?>
         <?php else: ?>
 
             <div class="post_form">
