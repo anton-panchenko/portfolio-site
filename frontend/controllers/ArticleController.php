@@ -16,6 +16,8 @@ class ArticleController extends Controller
 
     public function actionIndex($url)
     {
+        ArticleRepository::viewsIncrease($url);
+
         if ($article = ArticleRepository::getArticleModelByUrl($url)) {
 
             $tags = $article->getTagsModel();

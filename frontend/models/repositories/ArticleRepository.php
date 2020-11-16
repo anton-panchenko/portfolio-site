@@ -3,6 +3,7 @@
 namespace frontend\models\repositories;
 
 use frontend\models\Article;
+use Yii;
 
 class ArticleRepository extends Article
 {
@@ -51,8 +52,16 @@ class ArticleRepository extends Article
         return self::getByCategory($category_id);
     }
 
-//    public static function getTotalCount()
-//    {
-//        return self::find()->count();
-//    }
+    public static function getImage($imagePath)
+    {
+        return Yii::$app->imagemanager->getImagePath($imagePath);
+    }
+
+    public static function viewsIncrease($url)
+    {
+        $article = self::getArticleModelByUrl($url);
+        $article->updateCounters(['viewed' => 1]);
+
+        return true;
+    }
 }

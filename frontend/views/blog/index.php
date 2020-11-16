@@ -1,8 +1,11 @@
 <?php
 
+use frontend\models\repositories\ArticleRepository;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\widgets\mostPopular\MostPopular;
+use frontend\models\repositories\CategoryRepository;
+use common\helpers\Date;
 
 /* @var $this yii\web\View */
 /* @var $articles array */
@@ -34,25 +37,27 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                         <a href="404.html">#<?= $tag->title ?></a>
                         <?php endforeach; ?>
                     </div>
-                    <a href="article/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
+                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
                         <?= $article->title ?>
                     </a>
                 </div><!-- end blog_gallery__item_header -->
-                <a href="post.html" class="blogPage_gallery__item_img">
-                    <img src="<?php echo \Yii::$app->imagemanager->getImagePath($article->image); ?>"  alt="post_image">
+                <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_img">
+                    <img src="<?= ArticleRepository::getImage($article->image); ?>"  alt="post_image">
                 </a><!-- end blog_gallery__item_img -->
                 <div class="blogPage_gallery__item_footer">
-                    <a href="404.html" class="blogPage_gallery__item_footer__date">
-                        <?= Yii::$app->formatter->asDate($article->updated_at, 'php:d / m / Y') ?>
+                    <p class="blogPage_gallery__item_footer__date">
+                        <?= Date::getDate($article->updated_at); ?>
+                    </p>
+                    <a href="<?= '/blog/'.$article->category->id ?>" class="blogPage_gallery__item_footer__author">
+                        <?= $article->category->title ?>
                     </a>
-                    <a href="404.html" class="blogPage_gallery__item_footer__author"><?= $article->category->title ?></a>
                 </div><!-- end blog_gallery__item_footer -->
                 <div class="blogPage_gallery__item_secondfooter">
-                    <a href="404.html" class="blogPage_gallery__item_secondfooter__comments">
+                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_secondfooter__comments">
                         <?php $commentCount = count($article->comments); ?>
                         <?= $commentCount.' '.Yii::t('blog', '{commentCount, plural, one{comment} other{comments}}', ['commentCount' => $commentCount]); ?>
                     </a>
-                    <a href="404.html" class="blogPage_gallery__item_secondfooter__readBtn">
+                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_secondfooter__readBtn">
                         <?= Yii::t('blog', 'Read article') ?>
                     </a>
                 </div><!-- end blog_gallery__item_secondfooter -->
@@ -75,16 +80,16 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                 <div class="blogPage_sidebar__categories_items">
                     <?php foreach ($categories as $category): ?>
                     <div class="blogPage_sidebar__categories_items__item">
-                        <?= Html::a($category->title, '/blog/'.$category->id, ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
+                        <?= Html::a($category->title, '/blog/category/'.$category->id, ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
                         <p class="blogPage_sidebar__categories_items__item_counter">
-                            (0)
+                            (<?= CategoryRepository::getArticlesCount($category->id); ?>)
                         </p>
                     </div><!-- end blogPage_sidebar__categories_items__item -->
                     <?php endforeach; ?>
                     <div class="blogPage_sidebar__categories_items__item">
                         <?= Html::a(Yii::t('blog', 'All Articles'), '/blog/index', ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
                         <p class="blogPage_sidebar__categories_items__item_counter">
-                            (<?= $category->totalCount ?>)
+                            (<?= CategoryRepository::getArticlesCount(); ?>)
                         </p>
                     </div><!-- end blogPage_sidebar__categories_items__item -->
 

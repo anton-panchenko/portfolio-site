@@ -162,32 +162,32 @@ class Article extends \yii\db\ActiveRecord
         return implode(', ', $arr);
     }
 
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
-
-        $arr = ArrayHelper::map($this->tags, 'id', 'id');
-
-        if (is_array($this->tags_array)){
-
-            foreach ($this->tags_array as $one){
-                if (!in_array($one, $arr)){
-
-                    $model = new ArticleTag();
-                    $model->article_id = $this->id;
-                    $model->tag_id = $one;
-                    $model->save();
-                }
-                if (isset($arr[$one])){
-
-                    unset($arr[$one]);
-                }
-            }
-            ArticleTag::deleteAll(['tag_id' => $arr]);
-        } else {
-            ArticleTag::deleteAll(['article_id' => $this->id]);
-        }
-    }
+//    public function afterSave($insert, $changedAttributes)
+//    {
+//        parent::afterSave($insert, $changedAttributes);
+//
+//        $arr = ArrayHelper::map($this->tags, 'id', 'id');
+//
+//        if (is_array($this->tags_array)){
+//
+//            foreach ($this->tags_array as $one){
+//                if (!in_array($one, $arr)){
+//
+//                    $model = new ArticleTag();
+//                    $model->article_id = $this->id;
+//                    $model->tag_id = $one;
+//                    $model->save();
+//                }
+//                if (isset($arr[$one])){
+//
+//                    unset($arr[$one]);
+//                }
+//            }
+//            ArticleTag::deleteAll(['tag_id' => $arr]);
+//        } else {
+//            ArticleTag::deleteAll(['article_id' => $this->id]);
+//        }
+//    }
 
     public static function find()
     {

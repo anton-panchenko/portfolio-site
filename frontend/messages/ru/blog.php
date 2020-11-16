@@ -13,7 +13,7 @@ return [
     'Comment' => 'Комментарий',
     'Add comment' => 'Добавить комментарий',
     'Send' => 'Отправить',
-    'All Articles' => 'Все категории',
+    'All Articles' => 'Все статьи',
     'If you want to leave a comment, please login. If you are not registered, please register.' =>
         'Если вы хотите оставить комментарий, войдите. Если вы не зарегистрированы, заполните форму регистрации.',
 

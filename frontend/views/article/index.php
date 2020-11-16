@@ -8,6 +8,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\models\repositories\ArticleRepository;
+use common\helpers\Date;
 
 $this->title = Yii::t('main', 'Portfolio | Article');
 
@@ -33,15 +35,17 @@ $this->title = Yii::t('main', 'Portfolio | Article');
                 <?= $article->title ?>
             </h2><!-- end post_header__title -->
             <div class="post_header__img">
-                <img src="<?php echo \Yii::$app->imagemanager->getImagePath($article->image); ?>" alt="post_image">
+                <img src="<?= ArticleRepository::getImage($article->image); ?>" alt="post_image">
             </div><!-- end post_header__img -->
             <div class="post_header__date">
-                <a href="404.html" class="post_header__date_date">
-                    <?= Yii::$app->formatter->asDate($article->updated_at, 'php:d / m / Y') ?>
-                </a>
-                <a href="404.html" class="post_header__date_author"><?= $article->author->username ?></a>
+                <p class="post_header__date_date">
+                    <?= Date::getDate($article->updated_at); ?>
+                </p>
+                <p class="post_header__date_author"><?= $article->author->username ?></p>
             </div><!-- end post_header__date -->
-            <a href="404.html" class="post_header__comments"><?= $article->category->title ?></a><!-- end post_header__comments -->
+            <a href="<?= '/blog/category/'.$article->category->id ?>" class="post_header__comments">
+                <?= $article->category->title ?>
+            </a><!-- end post_header__comments -->
         </div><!-- end post_header -->
         <div class="post_body">
             <?= $article->content ?>
@@ -73,7 +77,7 @@ $this->title = Yii::t('main', 'Portfolio | Article');
                                 <?= $comment->user->username ?>
                             </h5>
                             <p class="post_comments__comment_head__addingTime">
-                                <?= Yii::$app->formatter->asDate($comment->updated_at, 'php:d / m / Y') ?>
+                                <?= Date::getDate($comment->updated_at); ?>
                             </p>
                         </div><!-- end post_comments__comment_head -->
                         <p class="post_comments__comment_text">
