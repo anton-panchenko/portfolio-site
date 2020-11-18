@@ -24,8 +24,26 @@ class ArticleController extends Controller
             $comments = $article->getCommentsModel();
             $form_model = new CommentForm();
 
-            return $this->render('index', compact('article', 'tags', 'comments', 'form_model'));
+            $changePossibility = ArticleRepository::getChangePossibility($url);
+
+            return $this->render('index', compact(
+                'article', 'tags', 'comments', 'form_model', 'changePossibility'
+            ));
         }
         throw new NotFoundHttpException(Yii::t('model', 'article_not_found'));
+    }
+
+    public function actionNext($id)
+    {
+        $nextArticleModel = ArticleRepository::getArticleModelById($id + 1);
+
+        return $this->actionIndex($nextArticleModel->url);
+    }
+
+    public function actionPrevious($id)
+    {
+        $previousArticleModel = ArticleRepository::getArticleModelById($id - 1);
+
+        return $this->actionIndex($previousArticleModel->url);
     }
 }

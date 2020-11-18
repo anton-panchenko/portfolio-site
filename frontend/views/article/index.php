@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $article \common\models\Article */
+/* @var $changePossibility \common\models\Article */
 /* @var $tags \common\models\Tag */
 /* @var $comments \common\models\Comment */
 /* @var $form_model \common\models\Comment */
@@ -50,16 +51,25 @@ $this->title = Yii::t('main', 'Portfolio | Article');
         <div class="post_body">
             <?= $article->content ?>
         </div><!-- end post_body -->
+
         <div class="post_links">
-            <a href="404.html" class="post_links__item">
+
+            <?php if ($changePossibility['canPrevious'] == true): ?>
+            <a href="<?= '/article/previous/'.$article->id ?>" class="post_links__item">
                 <i class="icon-left"></i>
                 <p><?= Yii::t('blog', 'Previous article') ?></p>
             </a><!-- end post_links__previous -->
-            <a href="404.html" class="post_links__item">
+            <?php endif; ?>
+
+            <?php if ($changePossibility['canNext'] == true): ?>
+            <a href="<?= '/article/next/'.$article->id ?>" class="post_links__item">
                 <p><?= Yii::t('blog', 'Next article') ?></p>
                 <i class="icon-right"></i>
             </a><!-- end post_links__next -->
+            <?php endif; ?>
+
         </div><!-- end post_links -->
+
         <div class="post_comments">
 
             <?php if (!empty($comments)): ?>
