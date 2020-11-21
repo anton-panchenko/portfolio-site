@@ -350,7 +350,7 @@ span {
 #pagePreloader {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -360,7 +360,7 @@ span {
 
 .app {
   font-family: 'Raleway', sans-serif;
-  display: none;
+  visibility: hidden;
 }
 
 .section_title__img {
@@ -1004,6 +1004,7 @@ textarea {
 
 .footer {
   height: calc(25px + 1.7361111111111112vw);
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -33,6 +33,7 @@ use yii\helpers\ArrayHelper;
 class Article extends \yii\db\ActiveRecord
 {
     public $tags_array;
+
     const STATUS_ACTIVE = 1;
     const STATUS_DRAFT = 0;
 
@@ -113,16 +114,6 @@ class Article extends \yii\db\ActiveRecord
         return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
 
-    public static function getStatusList()
-    {
-        return ['Draft', 'Active'];
-    }
-
-    public function getStatusName()
-    {
-        $list = self::getStatusList();
-        return $list[$this->status];
-    }
 
     public function getAuthor()
     {
@@ -136,63 +127,43 @@ class Article extends \yii\db\ActiveRecord
 
     public function getTags()
     {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('articleTags');
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('article_tag', ['article_id' => 'id']);
     }
 
-    public function afterFind()
+    public function getSelectedTags()
     {
-        parent::afterFind();
-        $this->tags_array = $this->tags;
+        $selectedIds = $this->getTags()->select('id')->asArray()->all();
+
+        return ArrayHelper::getColumn($selectedIds, 'id');
     }
 
-    public function beforeDelete()
+    public function saveTags($tags)
     {
-        if (parent::beforeDelete()){
+        if (is_array($tags))
+        {
+            $this->clearCurrentTags();
 
-            ArticleTag::deleteAll(['article_id' => $this->id]);
-            return true;
-        } else {
-            return false;
+            foreach ($tags as $tag_id)
+            {
+                $tag = Tag::findOne($tag_id);
+                $this->link('tags', $tag);
+            }
         }
     }
 
-    public function getTagsAsString()
+    public function clearCurrentTags()
     {
-        $arr = ArrayHelper::map($this->getTagsModel(), 'id', 'title');
-        return implode(', ', $arr);
+        ArticleTag::deleteAll(['article_id' => $this->id]);
     }
 
-//    public function afterSave($insert, $changedAttributes)
-//    {
-//        parent::afterSave($insert, $changedAttributes);
-//
-//        $arr = ArrayHelper::map($this->tags, 'id', 'id');
-//
-//        if (is_array($this->tags_array)){
-//
-//            foreach ($this->tags_array as $one){
-//                if (!in_array($one, $arr)){
-//
-//                    $model = new ArticleTag();
-//                    $model->article_id = $this->id;
-//                    $model->tag_id = $one;
-//                    $model->save();
-//                }
-//                if (isset($arr[$one])){
-//
-//                    unset($arr[$one]);
-//                }
-//            }
-//            ArticleTag::deleteAll(['tag_id' => $arr]);
-//        } else {
-//            ArticleTag::deleteAll(['article_id' => $this->id]);
-//        }
-//    }
+
 
     public static function find()
     {
         return new ArticleQuery(get_called_class());
     }
+
 }
 
 class ArticleQuery extends ActiveQuery

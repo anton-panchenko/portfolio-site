@@ -2,10 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\Tag;
 use Yii;
 use common\models\Article;
 use common\models\ArticleSearch;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,7 +27,7 @@ class ArticleController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update'],
+                        'actions' => ['index', 'view', 'create', 'update', 'set-tags'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
@@ -135,4 +137,23 @@ class ArticleController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionSetTags($id)
+    {
+        $article = $this->findModel($id);
+        $selectedTags = $article->getSelectedTags();
+        $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+
+        if (Yii::$app->request->isPost)
+        {
+            $tags = Yii::$app->request->post('tags');
+            $article->saveTags($tags);
+            return $this->render('view', [
+                'model' => $article
+            ]);
+        }
+
+        return $this->render('tags', compact('selectedTags', 'tags'));
+    }
+
 }

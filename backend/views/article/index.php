@@ -35,14 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
 //            'content:ntext',
-            ['attribute' => 'status', 'filter' => StatusHelper::labels(), 'value' => 'statusName'],
+            ['attribute' => 'status', 'filter' => StatusHelper::labels()],
             //'created_at',
             //'updated_at',
             'image',
-            //'viewed',
+            'viewed',
 //            'user_id',
             'category_id',
-            ['attribute' => 'tags', 'value' => 'tagsAsString'],
+//            ['attribute' => 'tags', 'value' => ''],
         ],
     ]); ?>
 

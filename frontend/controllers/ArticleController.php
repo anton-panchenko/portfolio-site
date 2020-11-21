@@ -18,7 +18,7 @@ class ArticleController extends Controller
     {
         ArticleRepository::viewsIncrease($url);
 
-        if ($article = ArticleRepository::getArticleModelByUrl($url)) {
+        if ($article = ArticleRepository::getByUrl($url)) {
 
             $tags = $article->getTagsModel();
             $comments = $article->getCommentsModel();
@@ -35,14 +35,14 @@ class ArticleController extends Controller
 
     public function actionNext($id)
     {
-        $nextArticleModel = ArticleRepository::getArticleModelById($id + 1);
+        $nextArticleModel = ArticleRepository::getById($id + 1);
 
         return $this->actionIndex($nextArticleModel->url);
     }
 
     public function actionPrevious($id)
     {
-        $previousArticleModel = ArticleRepository::getArticleModelById($id - 1);
+        $previousArticleModel = ArticleRepository::getById($id - 1);
 
         return $this->actionIndex($previousArticleModel->url);
     }

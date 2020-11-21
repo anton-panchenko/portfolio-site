@@ -45,6 +45,7 @@ return [
             'rules' => [
                 'blog' => 'blog/index',
                 'blog/category/<category_id:[\d]+>' => 'blog/category',
+                'blog/tag/<tag_id:[\d]+>' => 'blog/tag',
                 'comment/add/<id:[\d]+>' => 'comment/add',
                 'article/<url:[\w]+>' => 'article/index',
                 'article/next/<id:[\d]+>' => 'article/next',

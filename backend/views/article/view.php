@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -15,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Set Tags', ['set-tags', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -42,8 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'category_id',
             'author.username',
-            'tagsAsString',
+            ['attribute' => 'tags', 'value' => ''],
         ],
     ]) ?>
+
+    <div class="well">
+        <?php foreach ($model->tags as $tag): ?>
+            <p><?= $tag->title ?></p>
+        <?php endforeach; ?>
+    </div>
 
 </div>

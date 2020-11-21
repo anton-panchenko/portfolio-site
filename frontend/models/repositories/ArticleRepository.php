@@ -2,6 +2,7 @@
 
 namespace frontend\models\repositories;
 
+use common\models\Tag;
 use frontend\models\Article;
 use Yii;
 
@@ -12,34 +13,19 @@ class ArticleRepository extends Article
         return self::find()->active()->orderBy('id DESC');
     }
 
-    public static function getAllActiveArticlesModels()
-    {
-        return self::getAllActive();
-    }
-
     public static function getPopular()
     {
-        return self::find()->active()->orderBy('viewed DESC')->limit(5)->all();
+        return self::find()->active()->orderBy('viewed DESC')->limit(3)->all();
     }
 
     public static function getByUrl($url)
     {
-        return self::find()->andWhere(['url' => $url])->one();
-    }
-
-    public static function getArticleModelByUrl($url)
-    {
-        return self::getByUrl($url);
+        return self::findOne(['url' => $url]);
     }
 
     public static function getById($id)
     {
-        return self::find()->andWhere(['id' => $id])->one();
-    }
-
-    public static function getArticleModelById($id)
-    {
-        return self::getById($id);
+        return self::findOne(['id' => $id]);
     }
 
     public function getTagsModel()
@@ -57,19 +43,14 @@ class ArticleRepository extends Article
         return self::find()->active()->andWhere(['category_id' => $category_id])->orderBy('id DESC');
     }
 
-    public static function getArticlesModelsByCategory($category_id)
-    {
-        return self::getByCategory($category_id);
-    }
-
-    public static function getImage($imagePath)
+    public static function getImageByPath($imagePath)
     {
         return Yii::$app->imagemanager->getImagePath($imagePath);
     }
 
     public static function viewsIncrease($url)
     {
-        $article = self::getArticleModelByUrl($url);
+        $article = self::getByUrl($url);
         $article->updateCounters(['viewed' => 1]);
 
         return true;
@@ -77,7 +58,7 @@ class ArticleRepository extends Article
 
     public static function getArticleIdByUrl($url)
     {
-        $articleModel = self::find()->andWhere(['url' => $url])->one();
+        $articleModel = self::findOne(['url' => $url]);
 
         return $articleModel->id;
     }
@@ -91,13 +72,13 @@ class ArticleRepository extends Article
             'canPrevious' => true,
         ];
 
-        if (self::getArticleModelById($articleId - 1) === null){
+        if (self::getById($articleId - 1) === null){
 
             $changePossibility = [
                 'canNext' => true,
                 'canPrevious' => false
             ];
-        } elseif (self::getArticleModelById($articleId + 1) === null){
+        } elseif (self::getById($articleId + 1) === null){
 
             $changePossibility = [
                 'canNext' => false,

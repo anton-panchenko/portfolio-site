@@ -86,4 +86,20 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function getAuthorName()
+    {
+        return $this->user->username;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function getText()
+    {
+        return $this->text;
+    }
+
 }

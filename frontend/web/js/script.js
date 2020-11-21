@@ -36,24 +36,8 @@ let pagePreloader = document.querySelector('#pagePreloader');
 
 setTimeout(() => {
     pagePreloader.style.display = 'none';
-    app.style.display = 'block';
-    followTheLink();
+    app.style.visibility = 'visible';
 }, 1000);
-
-let followTheLink = function () {
-    let link = localStorage.getItem('link');
-    let a = document.querySelector('[href="' + link + '"]');
-    if (a) a.click();
-    localStorage.removeItem('link');
-};
-
-let ckickedLinks = document.querySelectorAll('.redirectLink');
-ckickedLinks.forEach(cl => {
-    cl.addEventListener('click', () => {
-        let link = cl.getAttribute('href').replace('index.html', '');
-        localStorage.setItem('link', link);
-    });
-});
 
 // --------------------------
 //     modal self photo

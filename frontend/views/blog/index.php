@@ -6,6 +6,7 @@ use yii\widgets\LinkPager;
 use frontend\widgets\mostPopular\MostPopular;
 use frontend\models\repositories\CategoryRepository;
 use common\helpers\Date;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $articles array */
@@ -33,31 +34,31 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
             <div class="blogPage_gallery__item">
                 <div class="blogPage_gallery__item_header">
                     <div class="blogPage_gallery__item_header__tags">
-                        <?php foreach ($article->tags as $tag): ?>
-                        <a href="404.html">#<?= $tag->title ?></a>
+                        <?php foreach ($article->getTagsModel() as $tag): ?>
+                        <a href="<?= Url::to('/blog/tag/'.$tag->getId()) ?>">#<?= $tag->getTitle() ?></a>
                         <?php endforeach; ?>
                     </div>
-                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_header__title">
-                        <?= $article->title ?>
+                    <a href="<?= Url::to('/article/'.$article->getUrl()); ?>" class="blogPage_gallery__item_header__title">
+                        <?= $article->getTitle() ?>
                     </a>
                 </div><!-- end blog_gallery__item_header -->
-                <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_img">
-                    <img src="<?= ArticleRepository::getImage($article->image); ?>"  alt="post_image">
+                <a href="<?= Url::to('/article/'.$article->getUrl()) ?>" class="blogPage_gallery__item_img">
+                    <img src="<?= ArticleRepository::getImageByPath($article->getImage()); ?>"  alt="post_image">
                 </a><!-- end blog_gallery__item_img -->
                 <div class="blogPage_gallery__item_footer">
                     <p class="blogPage_gallery__item_footer__date">
-                        <?= Date::getDate($article->updated_at); ?>
+                        <?= Date::getDate($article->getUpdatedAt()); ?>
                     </p>
-                    <a href="<?= '/blog/'.$article->category->id ?>" class="blogPage_gallery__item_footer__author">
-                        <?= $article->category->title ?>
+                    <a href="<?= Url::to('/blog/'.$article->getCategoryId()) ?>" class="blogPage_gallery__item_footer__author">
+                        <?= $article->getCategoryTitle() ?>
                     </a>
                 </div><!-- end blog_gallery__item_footer -->
                 <div class="blogPage_gallery__item_secondfooter">
-                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_secondfooter__comments">
-                        <?php $commentCount = count($article->comments); ?>
+                    <a href="<?= Url::to('/article/'.$article->getUrl()) ?>" class="blogPage_gallery__item_secondfooter__comments">
+                        <?php $commentCount = count($article->getCommentsModel()); ?>
                         <?= $commentCount.' '.Yii::t('blog', '{commentCount, plural, one{comment} other{comments}}', ['commentCount' => $commentCount]); ?>
                     </a>
-                    <a href="/article/<?= $article->url ?>" class="blogPage_gallery__item_secondfooter__readBtn">
+                    <a href="<?= Url::to('/article/'.$article->getUrl()) ?>" class="blogPage_gallery__item_secondfooter__readBtn">
                         <?= Yii::t('blog', 'Read article') ?>
                     </a>
                 </div><!-- end blog_gallery__item_secondfooter -->
@@ -80,9 +81,9 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                 <div class="blogPage_sidebar__categories_items">
                     <?php foreach ($categories as $category): ?>
                     <div class="blogPage_sidebar__categories_items__item">
-                        <?= Html::a($category->title, '/blog/category/'.$category->id, ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
+                        <?= Html::a($category->getTitle(), '/blog/category/'.$category->getId(), ['class' => 'blogPage_sidebar__categories_items__item_text']) ?>
                         <p class="blogPage_sidebar__categories_items__item_counter">
-                            (<?= CategoryRepository::getArticlesCount($category->id); ?>)
+                            (<?= CategoryRepository::getArticlesCount($category->getId()); ?>)
                         </p>
                     </div><!-- end blogPage_sidebar__categories_items__item -->
                     <?php endforeach; ?>
@@ -104,7 +105,7 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                 </div>
                 <div class="blogPage_sidebar__tags_items">
                     <?php foreach ($tags as $tag): ?>
-                    <a href="404.html" class="blogPage_sidebar__tags_items__item">#<?= $tag->title ?></a>
+                    <a href="<?= Url::to('/blog/tag/'.$tag->getId()) ?>" class="blogPage_sidebar__tags_items__item">#<?= $tag->getTitle() ?></a>
                     <?php endforeach; ?>
                 </div>
             </div><!-- end blogPage_sidebar__tags -->

@@ -1,10 +1,11 @@
 <?php
 
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\helpers\StatusHelper;
-//use vova07\imperavi\Widget;
+use \noam148\imagemanager\components\ImageManagerInputWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
@@ -27,9 +28,9 @@ use common\helpers\StatusHelper;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(\common\models\Article::getStatusList()) ?>
+    <?= $form->field($model, 'status')->dropDownList(StatusHelper::labels()) ?>
 
-    <?= $form->field($model, 'image')->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
+    <?= $form->field($model, 'image')->widget(ImageManagerInputWidget::className(), [
         'aspectRatio' => (16/9), //set the aspect ratio
         'cropViewMode' => 1, //crop mode, option info: https://github.com/fengyuanchen/cropper/#viewmode
         'showPreview' => true, //false to hide the preview
@@ -39,17 +40,6 @@ use common\helpers\StatusHelper;
     <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'category_id')->textInput() ?>
-
-    <?= $form->field($model, 'tags_array')->widget(Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\common\models\Tag::find()->all(), 'id', 'title'),
-        'language' => 'ru',
-        'options' => ['placeholder' => 'Select tags ...', 'multiple' => true],
-        'pluginOptions' => [
-            'allowClear' => true,
-            'tags' => true,
-            'maximumInputLength' => 10
-        ],
-    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

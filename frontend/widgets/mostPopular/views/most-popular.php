@@ -5,6 +5,7 @@ namespace frontend\widgets\mostPopular;
 use common\helpers\Date;
 use Yii;
 use frontend\models\repositories\ArticleRepository;
+use yii\helpers\Url;
 
 /* @var $popularArticles array */
 
@@ -18,13 +19,13 @@ use frontend\models\repositories\ArticleRepository;
         <?php foreach ($popularArticles as $popularArticle): ?>
             <div class="blogPage_sidebar__popPosts_items__item">
                 <p class="blogPage_sidebar__popPosts_items__item_date">
-                    <?= Date::getDate($popularArticle->updated_at); ?>
+                    <?= Date::getDate($popularArticle->getUpdatedAt()); ?>
                 </p>
-                <a href="/article/<?= $popularArticle->url ?>" class="blogPage_sidebar__popPosts_items__item_title">
-                    <?= $popularArticle->title ?>
+                <a href="<?= Url::to('/article/'.$popularArticle->getUrl()) ?>" class="blogPage_sidebar__popPosts_items__item_title">
+                    <?= $popularArticle->getTitle() ?>
                 </a>
-                <a href="/article/<?= $popularArticle->url ?>" class="blogPage_sidebar__popPosts_items__item_comments">
-                    <?php $commentCount = count($popularArticle->comments); ?>
+                <a href="<?= Url::to('/article/'.$popularArticle->getUrl()) ?>" class="blogPage_sidebar__popPosts_items__item_comments">
+                    <?php $commentCount = count($popularArticle->getCommentsModel()); ?>
                     <?= $commentCount.' '.Yii::t('blog', '{commentCount, plural, one{comment} other{comments}}', ['commentCount' => $commentCount]); ?>
                 </a>
             </div><!-- end blogPage_sidebar__popPosts_items__item -->
