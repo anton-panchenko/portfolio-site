@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\widgets\navMenu\NavMenu;
 
 AppAsset::register($this);
 ?>
@@ -38,13 +39,11 @@ AppAsset::register($this);
         <i class="icon-up"></i>
     </a><!-- end scrollToTop -->
 
-    <div class="fixed_menu">
-        <a href="#blockAbout" class="fixed_menu__item" data-menu="1">Обо мне</a>
-        <a href="#blockResume" class="fixed_menu__item" data-menu="2">Резюме</a>
-        <a href="#blockWorks" class="fixed_menu__item" data-menu="3">Портфолио</a>
-        <a href="#blockBlog" class="fixed_menu__item" data-menu="4">Блог</a>
-        <a href="#blockContacts" class="fixed_menu__item" data-menu="5">Контакты</a>
-    </div><!-- end fixed_menu -->
+    <?= NavMenu::widget([
+        'location' => 'main',
+        'cssClass' => 'fixed_menu',
+        'idName' => '',
+    ]); ?>
 
     <footer class="footer">
         <p class="footer_text">

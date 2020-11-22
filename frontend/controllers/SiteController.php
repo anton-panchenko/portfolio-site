@@ -3,9 +3,9 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use frontend\models\ContactForm;
+use frontend\models\repositories\ArticleRepository;
+use frontend\models\repositories\ProjectRepository;
 
 /**
  * Site controller
@@ -22,8 +22,12 @@ class SiteController extends Controller
         $this->layout = 'main';
 
         $contactForm = new ContactForm();
+        $articles = ArticleRepository::getArticlesForMainPage();
+        $projects = ProjectRepository::getForMainPage();
 
-        return $this->render('index', compact('contactForm'));
+        return $this->render('index', compact(
+            'contactForm', 'articles', 'projects'
+        ));
     }
 
     /**

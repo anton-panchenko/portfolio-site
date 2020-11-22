@@ -13,4 +13,6 @@ return [
     'Portfolio | Home' => 'Портфолио | Главная',
     'Portfolio | Blog' => 'Портфолио | Блог',
     'Portfolio | Article' => 'Портфолио | Статья',
+
+    'All articles' => 'Все статьи',
 ];

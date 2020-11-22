@@ -6,6 +6,7 @@ use yii\base\Widget;
 
 class NavMenu extends Widget
 {
+    public $location;
     public $cssClass;
     public $idName;
 
@@ -14,6 +15,7 @@ class NavMenu extends Widget
     public function run() {
 
         return $this->render('nav-menu', [
+            'location' => $this->location,
             'cssClass' => $this->cssClass,
             'idName' => $this->idName,
         ]);

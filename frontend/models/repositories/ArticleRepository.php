@@ -88,4 +88,9 @@ class ArticleRepository extends Article
 
         return $changePossibility;
     }
+
+    public static function getArticlesForMainPage()
+    {
+        return self::findAll([5, 4]);
+    }
 }

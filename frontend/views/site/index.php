@@ -2,12 +2,17 @@
 
 /* @var $this yii\web\View */
 /* @var $contactForm \frontend\models\ContactForm */
+/* @var $articles \frontend\models\repositories\ArticleRepository */
+/* @var $projects \frontend\models\repositories\ProjectRepository */
 
 $this->title = Yii::t('main', 'Portfolio | Home');
 
+use common\helpers\Date;
+use frontend\models\repositories\ArticleRepository;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use frontend\models\repositories\ProjectRepository;
 
 ?>
 
@@ -28,31 +33,41 @@ use yii\helpers\Url;
             <div class="header_menu__item">
                 <a href="#blockAbout" class="header_menu__item_link">
                     <img src="/img/svg/menu-about.svg" alt="about" class="header_menu__item_img">
-                    <p class="header_menu__item_text">Обо мне</p>
+                    <p class="header_menu__item_text">
+                        <?= Yii::t('main', 'About') ?>
+                    </p>
                 </a>
             </div><!-- end header_menu__item -->
             <div class="header_menu__item">
                 <a href="#blockResume" class="header_menu__item_link">
                     <img src="/img/svg/menu-resume.svg" alt="resume" class="header_menu__item_img">
-                    <p class="header_menu__item_text">Резюме</p>
+                    <p class="header_menu__item_text">
+                        <?= Yii::t('main', 'CV') ?>
+                    </p>
                 </a>
             </div><!-- end header_menu__item -->
             <div class="header_menu__item">
                 <a href="#blockWorks" class="header_menu__item_link">
                     <img src="/img/svg/menu-portfolio.svg" alt="portfolio" class="header_menu__item_img">
-                    <p class="header_menu__item_text">Портфолио</p>
+                    <p class="header_menu__item_text">
+                        <?= Yii::t('main', 'Portfolio') ?>
+                    </p>
                 </a>
             </div><!-- end header_menu__item -->
             <div class="header_menu__item">
                 <a href="#blockBlog" class="header_menu__item_link">
                     <img src="/img/svg/menu-blog.svg" alt="blog" class="header_menu__item_img">
-                    <p class="header_menu__item_text">Блог</p>
+                    <p class="header_menu__item_text">
+                        <?= Yii::t('main', 'Blog') ?>
+                    </p>
                 </a>
             </div><!-- end header_menu__item -->
             <div class="header_menu__item">
                 <a href="#blockContacts" class="header_menu__item_link">
                     <img src="/img/svg/menu-contacts.svg" alt="contacts" class="header_menu__item_img">
-                    <p class="header_menu__item_text">Контакты</p>
+                    <p class="header_menu__item_text">
+                        <?= Yii::t('main', 'Contacts') ?>
+                    </p>
                 </a>
             </div><!-- end header_menu__item -->
         </nav><!-- end header_menu -->
@@ -78,7 +93,9 @@ use yii\helpers\Url;
         <div class="section_title__img">
             <img src="/img/svg/about.svg" alt="about">
         </div>
-        <h2 class="section_title__text">Обо мне</h2>
+        <h2 class="section_title__text">
+            <?= Yii::t('main', 'About') ?>
+        </h2>
     </div><!-- end section_title -->
     <div class="about_content">
         <div class="about_facts about_content__item">
@@ -149,17 +166,17 @@ use yii\helpers\Url;
         </div><!-- end about_description -->
     </div><!-- end about_content -->
     <div class="section_buttons">
-        <a href="docs/CV_Panchenko_AV.pdf" class="btn btn-dark" target="_blank">Загрузить резюме</a>
+        <a href="https://hostiq.ua/blog/what-are-subdomains/" class="btn btn-dark" target="_blank">Загрузить резюме</a>
         <!--        <a href="#" class="btn btn-light">Напечатать резюме</a>-->
     </div><!-- end about_buttons -->
 </section><!-- end about -->
 <section class="section resume" id="blockResume" data-menu="2">
     <div class="section_title">
         <div class="section_title__img">
-            <img src="/img/svg/resume.svg" alt="about">
+            <img src="/img/svg/resume.svg" alt="CV">
         </div>
         <h2 class="section_title__text">
-            Резюме
+            <?= Yii::t('main', 'CV') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="resume_content">
@@ -256,10 +273,10 @@ use yii\helpers\Url;
 <section class="section works" id="blockWorks" data-menu="3">
     <div class="section_title">
         <div class="section_title__img">
-            <img src="/img/svg/portfolio.svg" alt="about">
+            <img src="/img/svg/portfolio.svg" alt="portfolio">
         </div>
         <h2 class="section_title__text">
-            Мои работы
+            <?= Yii::t('main', 'Portfolio') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="works_filter filters-button">
@@ -277,122 +294,81 @@ use yii\helpers\Url;
         </a>
     </div><!-- end works_filter -->
     <div class="works_gallery grid" id="grid">
-        <a href="projects/dashboard2/index.html" class="grid-item dashboard" target="_blank">
-            <img src="/img/png/admin_dashboard_2.png" alt="project_link">
+
+        <?php foreach ($projects as $project): ?>
+        <a href="<?= Url::to($project->getUrl()) ?>" class="grid-item <?= $project->getFilterClass() ?>" target="_blank">
+            <img src="<?= ProjectRepository::getImageByPath($project->getImage()) ?>" alt="project_link">
             <div class="works_gallery__hover_content">
                 <div class="works_gallery__hover_content_wrap">
                     <h3 class="works_gallery__hover_content__title">
-                        Админпанель
+                        <?= $project->getTitle() ?>
                     </h3>
                     <p class="works_gallery__hover_content__description">
-                        Адаптивная админпанель для сайта онлайн курсов. В ней отслеживается вся необходимая статистика для сайта небольшой школы.
+                        <?= $project->getDescription() ?>
                     </p>
                 </div>
             </div>
         </a><!-- end grid-item -->
-        <a href="projects/crios/index.html" class="grid-item landing" target="_blank">
-            <img src="/img/png/crios.png" alt="project_link">
-            <div class="works_gallery__hover_content">
-                <div class="works_gallery__hover_content_wrap">
-                    <h3 class="works_gallery__hover_content__title">
-                        Crios
-                    </h3>
-                    <p class="works_gallery__hover_content__description">
-                        Универсальный лендинг в светлых тонах, который может быть применен практически для любого сайта. Шаблон адаптивный и содержит меню, удобное для любых устройств.
-                    </p>
-                </div>
-            </div>
-        </a><!-- end grid-item -->
-        <a href="projects/csscalc/index.html" class="grid-item program" target="_blank">
-            <img src="/img/png/css_calc.png" alt="project_link">
-            <div class="works_gallery__hover_content">
-                <div class="works_gallery__hover_content_wrap">
-                    <h3 class="works_gallery__hover_content__title">
-                        CSS Calc
-                    </h3>
-                    <p class="works_gallery__hover_content__description">
-                        Расчетная страница для верстальщиков. Позволяет быстрее работать над адаптивностью шрифтов и расстояний. Реализовано выделение и копирование в буфер по клику.
-                    </p>
-                </div>
-            </div>
-        </a><!-- end grid-item -->
-        <a href="projects/dashboard1/index.html" class="grid-item dashboard" target="_blank">
-            <img src="/img/png/admin_dashboard_1.png" alt="project_link">
-            <div class="works_gallery__hover_content">
-                <div class="works_gallery__hover_content_wrap">
-                    <h3 class="works_gallery__hover_content__title">
-                        Админпанель
-                    </h3>
-                    <p class="works_gallery__hover_content__description">
-                        Адаптивная админпанель для сайта мобильной игры. Содержит анимированные графики со стастикой по разнообразным показателям.
-                    </p>
-                </div>
-            </div>
-        </a><!-- end grid-item -->
+        <?php endforeach; ?>
+
     </div><!-- end works_gallery -->
     <div class="section_buttons">
-        <a href="portfolio.html" class="btn btn-dark" target="_blank">Все работы</a>
+        <a href="<?= Url::to('/portfolio') ?>" class="btn btn-dark" target="_blank">Все работы</a>
     </div><!-- end section_buttons -->
 </section><!-- end works -->
+
 <section class="section blog" id="blockBlog" data-menu="4">
     <div class="section_title">
         <div class="section_title__img">
             <img src="/img/svg/blog.svg" alt="about">
         </div>
         <h2 class="section_title__text">
-            Блог
+            <?= Yii::t('blog', 'Blog') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="blog_gallery">
+
+        <?php foreach ($articles as $article): ?>
         <div class="blog_gallery__item">
             <div class="blog_gallery__item_header">
                 <div class="blog_gallery__item_header__tags">
-                    <a href="404.html">#Yii2</a>
-                    <a href="404.html">#PHP</a>
+                    <?php foreach ($article->getTagsModel() as $tag): ?>
+                        <a href="<?= Url::to('/blog/tag/'.$tag->getId()) ?>">#<?= $tag->getTitle() ?></a>
+                    <?php endforeach; ?>
                 </div>
-                <a href="post.html" class="blog_gallery__item_header__title">
-                    Yii2-advanсed. Установка и первая настройка
+                <a href="<?= Url::to('/article/'.$article->getUrl()); ?>" class="blogPage_gallery__item_header__title">
+                    <?= $article->getTitle() ?>
                 </a>
             </div><!-- end blog_gallery__item_header -->
-            <a href="post.html" class="blog_gallery__item_img">
-                <img src="/img/png/yii_framework.png" alt="post_image">
+            <a href="<?= Url::to('/article/'.$article->getUrl()) ?>" class="blog_gallery__item_img">
+                <img src="<?= ArticleRepository::getImageByPath($article->getImage()); ?>"  alt="post_image">
             </a><!-- end blog_gallery__item_img -->
             <div class="blog_gallery__item_footer">
-                <a href="404.html" class="blog_gallery__item_footer__date">19 / 09 / 2020</a>
-                <a href="404.html" class="blog_gallery__item_footer__author">Антон Панченко</a>
-            </div><!-- end blog_gallery__item_footer -->
-        </div><!-- end blog_gallery__item -->
-        <div class="blog_gallery__item">
-            <div class="blog_gallery__item_header">
-                <div class="blog_gallery__item_header__tags">
-                    <a href="404.html">#HTML5</a>
-                    <a href="404.html">#CSS3</a>
-                    <a href="404.html">#JS</a>
-                </div>
-                <a href="post.html" class="blog_gallery__item_header__title">
-                    Простой прелоадер на чистом JavaScript
+                <p class="blog_gallery__item_footer__date">
+                    <?= Date::getDate($article->getUpdatedAt()); ?>
+                </p>
+                <a href="<?= Url::to('/blog/'.$article->getCategoryId()) ?>" class="blog_gallery__item_footer__author">
+                    <?= $article->getCategoryTitle() ?>
                 </a>
-            </div><!-- end blog_gallery__item_header -->
-            <a href="post.html" class="blog_gallery__item_img">
-                <img src="/img/png/notebook.png" alt="post_image">
-            </a><!-- end blog_gallery__item_img -->
-            <div class="blog_gallery__item_footer">
-                <a href="404.html" class="blog_gallery__item_footer__date">20 / 09 / 2020</a>
-                <a href="404.html" class="blog_gallery__item_footer__author">Антон Панченко</a>
             </div><!-- end blog_gallery__item_footer -->
         </div><!-- end blog_gallery__item -->
+        <?php endforeach; ?>
+
     </div><!-- end blog_gallery -->
     <div class="section_buttons">
-        <a href="blog.html" class="btn btn-dark" target="_blank">Все статьи</a>
+        <a href="<?= Url::to('/blog/') ?>" class="btn btn-dark" target="_blank">
+            <?= Yii::t('main', 'All articles') ?>
+        </a>
     </div><!-- end section_buttons -->
 </section><!-- end blog -->
+
 <section class="section contacts" id="blockContacts" data-menu="5">
     <div class="section_title">
         <div class="section_title__img">
             <img src="/img/svg/contacts.svg" alt="about">
         </div>
         <h2 class="section_title__text">
-            Контакты
+            <?= Yii::t('main', 'Contacts') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="contacts_content">
@@ -462,10 +438,6 @@ use yii\helpers\Url;
 
             <?php ActiveForm::end(); ?>
         </div>
-
-
-
-
 
     </div><!-- end contacts_content -->
 </section><!-- end contacts -->

@@ -34,6 +34,7 @@
                     ['label' => 'Блог', 'icon' => 'pencil', 'url' => ['/article']],
                     ['label' => 'Теги', 'icon' => 'tags', 'url' => ['/tag']],
                     ['label' => 'Комметнарии', 'icon' => 'id-card', 'url' => ['/comment']],
+                    ['label' => 'Проекты', 'icon' => 'pencil', 'url' => ['/project']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

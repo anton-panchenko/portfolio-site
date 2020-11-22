@@ -33,13 +33,15 @@ AppAsset::register($this);
 <div class="app" id="app">
 
     <?= NavMenu::widget([
+        'location' => 'blog',
         'cssClass' => 'head_menu',
-        'idName' => 'head_menu'
+        'idName' => 'head_menu',
     ]); ?>
 
     <?= NavMenu::widget([
+        'location' => 'blog',
         'cssClass' => 'fixed_menu',
-        'idName' => ''
+        'idName' => '',
     ]); ?>
 
     <a href="#head_menu" class="scrollToTop" id="scrollToTop">
