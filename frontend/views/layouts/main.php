@@ -6,9 +6,9 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use common\widgets\Alert;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
 use frontend\widgets\navMenu\NavMenu;
 
 AppAsset::register($this);

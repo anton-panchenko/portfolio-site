@@ -7,12 +7,12 @@
 
 $this->title = Yii::t('main', 'Portfolio | Home');
 
-use common\helpers\Date;
-use frontend\models\repositories\ArticleRepository;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\Html;
+use common\helpers\Date;
+use yii\widgets\ActiveForm;
 use frontend\models\repositories\ProjectRepository;
+use frontend\models\repositories\ArticleRepository;
 
 ?>
 
@@ -166,7 +166,7 @@ use frontend\models\repositories\ProjectRepository;
         </div><!-- end about_description -->
     </div><!-- end about_content -->
     <div class="section_buttons">
-        <a href="https://hostiq.ua/blog/what-are-subdomains/" class="btn btn-dark" target="_blank">Загрузить резюме</a>
+        <a href="#" class="btn btn-dark" target="_blank">Загрузить резюме</a>
         <!--        <a href="#" class="btn btn-light">Напечатать резюме</a>-->
     </div><!-- end about_buttons -->
 </section><!-- end about -->
@@ -281,7 +281,7 @@ use frontend\models\repositories\ProjectRepository;
     </div><!-- end section_title -->
     <div class="works_filter filters-button">
         <a href="" class="works_filter__item filter-btn" data-filter="*" id="btnAll">
-            Все
+            <?= Yii::t('main', 'All') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".dashboard">
             Dashboards

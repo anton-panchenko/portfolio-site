@@ -3,8 +3,8 @@
 
 namespace frontend\models\repositories;
 
-use frontend\models\Project;
 use Yii;
+use frontend\models\Project;
 
 class ProjectRepository extends Project
 {

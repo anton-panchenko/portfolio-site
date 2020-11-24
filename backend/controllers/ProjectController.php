@@ -3,11 +3,11 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Project;
-use common\models\ProjectSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use common\models\Project;
 use yii\filters\VerbFilter;
+use common\models\ProjectSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -38,10 +38,7 @@ class ProjectController extends Controller
         $searchModel = new ProjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', compact('searchModel', 'dataProvider'));
     }
 
     /**
@@ -70,9 +67,7 @@ class ProjectController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', compact('model'));
     }
 
     /**
@@ -90,9 +85,7 @@ class ProjectController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', compact('model'));
     }
 
     /**

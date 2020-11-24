@@ -3,12 +3,12 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use yii\helpers\Html;
 use yii\helpers\Url;
-use frontend\assets\AppAsset;
+use yii\helpers\Html;
 use common\widgets\Alert;
-use frontend\widgets\multiLang\MultiLang;
+use frontend\assets\AppAsset;
 use frontend\widgets\navMenu\NavMenu;
+use frontend\widgets\multiLang\MultiLang;
 
 AppAsset::register($this);
 ?>

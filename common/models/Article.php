@@ -2,12 +2,12 @@
 
 namespace common\models;
 
-use common\helpers\StatusHelper;
-use phpDocumentor\Reflection\Types\This;
 use Yii;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
+use common\helpers\StatusHelper;
+use phpDocumentor\Reflection\Types\This;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "article".

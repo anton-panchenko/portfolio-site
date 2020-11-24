@@ -2,10 +2,10 @@
 
 namespace frontend\widgets\mostPopular;
 
-use common\helpers\Date;
 use Yii;
-use frontend\models\repositories\ArticleRepository;
 use yii\helpers\Url;
+use common\helpers\Date;
+use frontend\models\repositories\ArticleRepository;
 
 /* @var $popularArticles array */
 

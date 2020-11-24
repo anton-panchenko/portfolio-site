@@ -2,9 +2,9 @@
 
 namespace frontend\models\repositories;
 
+use Yii;
 use common\models\Tag;
 use frontend\models\Article;
-use Yii;
 
 class ArticleRepository extends Article
 {

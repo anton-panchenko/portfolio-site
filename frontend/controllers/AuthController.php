@@ -3,18 +3,18 @@
 
 namespace frontend\controllers;
 
+use Yii;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
 use common\models\LoginForm;
+use yii\filters\AccessControl;
+use frontend\models\SignupForm;
+use yii\web\BadRequestHttpException;
+use frontend\models\VerifyEmailForm;
+use yii\base\InvalidArgumentException;
+use frontend\models\ResetPasswordForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResendVerificationEmailForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\VerifyEmailForm;
-use Yii;
-use yii\base\InvalidArgumentException;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 
 class AuthController extends Controller
 {
@@ -83,9 +83,7 @@ class AuthController extends Controller
         } else {
             $model->password = '';
 
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            return $this->render('login', compact('model'));
         }
     }
 
@@ -114,9 +112,7 @@ class AuthController extends Controller
             return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
         }
 
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->render('signup', compact('model'));
     }
 
     /**
@@ -137,9 +133,7 @@ class AuthController extends Controller
             }
         }
 
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
+        return $this->render('requestPasswordResetToken', compact('model'));
     }
 
     /**
@@ -163,9 +157,7 @@ class AuthController extends Controller
             return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
         }
 
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
+        return $this->render('resetPassword', compact('model'));
     }
 
     /**
@@ -209,9 +201,7 @@ class AuthController extends Controller
             Yii::$app->session->setFlash('error', 'Sorry, we are unable to resend verification email for the provided email address.');
         }
 
-        return $this->render('resendVerificationEmail', [
-            'model' => $model
-        ]);
+        return $this->render('resendVerificationEmail', compact('model'));
     }
 
 }

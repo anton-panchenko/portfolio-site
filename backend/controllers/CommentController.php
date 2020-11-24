@@ -3,12 +3,12 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Comment;
-use common\models\CommentSearch;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use common\models\Comment;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use common\models\CommentSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * CommentController implements the CRUD actions for Comment model.
@@ -49,10 +49,7 @@ class CommentController extends Controller
         $searchModel = new CommentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', compact('searchModel', 'dataProvider'));
     }
 
     /**
@@ -81,9 +78,7 @@ class CommentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', compact('model'));
     }
 
     /**
@@ -101,9 +96,7 @@ class CommentController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', compact('model'));
     }
 
     /**

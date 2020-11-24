@@ -13,6 +13,8 @@ return [
     'Portfolio | Home' => 'Portfolio | Home',
     'Portfolio | Blog' => 'Portfolio | Blog',
     'Portfolio | Article' => 'Portfolio | Article',
+    'Portfolio | My works' => 'Portfolio | My works',
 
     'All articles' => 'All articles',
+    'All' => 'All',
 ];

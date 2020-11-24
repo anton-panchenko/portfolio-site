@@ -3,10 +3,10 @@
 namespace frontend\widgets\navMenu;
 
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\widgets\register\Register;
 use frontend\widgets\multiLang\MultiLang;
-use yii\helpers\Url;
 
 /* @var $cssClass string */
 /* @var $idName string */

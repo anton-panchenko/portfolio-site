@@ -4,8 +4,8 @@
 namespace frontend\models\repositories;
 
 
-use common\models\Article;
 use frontend\models\Tag;
+use common\models\Article;
 
 class TagRepository extends Tag
 {

@@ -3,10 +3,10 @@
 /* @var $this yii\web\View */
 /* @var $projects \frontend\models\repositories\ProjectRepository */
 
-use frontend\models\repositories\ProjectRepository;
 use yii\helpers\Url;
+use frontend\models\repositories\ProjectRepository;
 
-$this->title = 'Портфолио | Работы';
+$this->title = Yii::t('main', 'Portfolio | My works');
 ?>
 
 <div class="works">
@@ -15,12 +15,12 @@ $this->title = 'Портфолио | Работы';
             <img src="/img/svg/portfolio.svg" alt="about">
         </div>
         <h2 class="section_title__text">
-            Мои работы
+            <?= Yii::t('main', 'Portfolio') ?>
         </h2>
     </div><!-- end section_title -->
     <div class="works_filter filters-button">
         <a href="" class="works_filter__item filter-btn" data-filter="*" id="btnAll">
-            Все
+            <?= Yii::t('main', 'All') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".dashboard">
             Dashboards

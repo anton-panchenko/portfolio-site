@@ -1,12 +1,12 @@
 <?php
 
-use frontend\models\repositories\ArticleRepository;
+use yii\helpers\Url;
 use yii\helpers\Html;
+use common\helpers\Date;
 use yii\widgets\LinkPager;
 use frontend\widgets\mostPopular\MostPopular;
+use frontend\models\repositories\ArticleRepository;
 use frontend\models\repositories\CategoryRepository;
-use common\helpers\Date;
-use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $articles array */

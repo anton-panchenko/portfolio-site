@@ -2,15 +2,15 @@
 
 namespace backend\controllers;
 
-use common\models\Tag;
 use Yii;
-use common\models\Article;
-use common\models\ArticleSearch;
-use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
+use common\models\Tag;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use common\models\Article;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
+use common\models\ArticleSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -51,10 +51,7 @@ class ArticleController extends Controller
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', compact('searchModel', 'dataProvider'));
     }
 
     /**
@@ -83,9 +80,7 @@ class ArticleController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', compact('model'));
     }
 
     /**
@@ -103,9 +98,7 @@ class ArticleController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', compact('model'));
     }
 
     /**

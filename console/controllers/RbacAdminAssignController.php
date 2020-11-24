@@ -2,10 +2,10 @@
 namespace console\controllers;
 
 use Yii;
-use yii\console\Controller;
 use common\models\User;
-use yii\console\ExitCode;
 use yii\helpers\Console;
+use yii\console\ExitCode;
+use yii\console\Controller;
 
 //php yii rbac-admin-assign/init 1
 class RbacAdminAssignController extends Controller

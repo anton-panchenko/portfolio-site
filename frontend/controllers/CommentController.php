@@ -4,8 +4,8 @@
 namespace frontend\controllers;
 
 
-use frontend\models\CommentForm;
 use Yii;
+use frontend\models\CommentForm;
 
 class CommentController extends \yii\web\Controller
 {

@@ -3,8 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use yii\data\Pagination;
 use yii\web\Controller;
+use yii\data\Pagination;
 use frontend\models\repositories\TagRepository;
 use frontend\models\repositories\ArticleRepository;
 use frontend\models\repositories\CategoryRepository;

@@ -1,9 +1,9 @@
 <?php
 
-use common\helpers\StatusHelper;
-use noam148\imagemanager\components\ImageManagerInputWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\helpers\StatusHelper;
+use noam148\imagemanager\components\ImageManagerInputWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
