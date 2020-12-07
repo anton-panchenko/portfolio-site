@@ -91,6 +91,6 @@ class ArticleRepository extends Article
 
     public static function getArticlesForMainPage()
     {
-        return self::findAll([5, 4]);
+        return self::findAll([7, 8]);
     }
 }

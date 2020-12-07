@@ -27,7 +27,7 @@ class ArticleController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'set-tags'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'set-tags'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],

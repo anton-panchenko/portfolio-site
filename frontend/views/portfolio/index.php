@@ -28,6 +28,9 @@ $this->title = Yii::t('main', 'Portfolio | My works');
         <a href="" class="works_filter__item filter-btn" data-filter=".landing">
             Landing-page
         </a>
+        <a href="" class="works_filter__item filter-btn" data-filter=".shop">
+            Shop
+        </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".program">
             App
         </a>

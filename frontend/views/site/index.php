@@ -205,11 +205,11 @@ use frontend\models\repositories\ArticleRepository;
                                 PHP
                             </p>
                             <p class="resume_content__item_text__value">
-                                20%
+                                40%
                             </p>
                         </div>
                         <div class="resume_content__item_progress">
-                            <div class="resume_content__item_progress__up" data-value="20"></div>
+                            <div class="resume_content__item_progress__up" data-value="40"></div>
                         </div>
                     </div><!-- end resume_content__item -->
                 </div><!-- end resume_content__parts_row__col -->
@@ -230,7 +230,7 @@ use frontend\models\repositories\ArticleRepository;
                     <div class="resume_content__item">
                         <div class="resume_content__item_text">
                             <p class="resume_content__item_text__title">
-                                Photoshop
+                                Yii2
                             </p>
                             <p class="resume_content__item_text__value">
                                 50%
@@ -288,6 +288,9 @@ use frontend\models\repositories\ArticleRepository;
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".landing">
             Landing-page
+        </a>
+        <a href="" class="works_filter__item filter-btn" data-filter=".shop">
+            Shop
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".program">
             App

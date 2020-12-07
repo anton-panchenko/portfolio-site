@@ -32,6 +32,7 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Блог', 'icon' => 'pencil', 'url' => ['/article']],
+                    ['label' => 'Категории', 'icon' => 'pencil', 'url' => ['/category']],
                     ['label' => 'Теги', 'icon' => 'tags', 'url' => ['/tag']],
                     ['label' => 'Комметнарии', 'icon' => 'id-card', 'url' => ['/comment']],
                     ['label' => 'Проекты', 'icon' => 'pencil', 'url' => ['/project']],

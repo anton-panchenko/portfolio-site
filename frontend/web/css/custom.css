@@ -12,3 +12,8 @@
     right: 50px;
     display: flex;
 }
+
+pre {
+    background-color: #e0e6e9;
+    padding: 0 20px;
+}
