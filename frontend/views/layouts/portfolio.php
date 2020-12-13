@@ -16,6 +16,16 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNFCNS3108"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BNFCNS3108');
+    </script>
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +62,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <p class="footer_text">
-            2020. Антон Панченко
+            2020. <?= Yii::t('main', 'Anton Panchenko') ?>
         </p>
     </footer>
 

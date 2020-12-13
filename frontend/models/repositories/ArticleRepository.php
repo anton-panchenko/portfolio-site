@@ -5,6 +5,7 @@ namespace frontend\models\repositories;
 use Yii;
 use common\models\Tag;
 use frontend\models\Article;
+use frontend\models\repositories\TagRepository;
 
 class ArticleRepository extends Article
 {
@@ -26,16 +27,6 @@ class ArticleRepository extends Article
     public static function getById($id)
     {
         return self::findOne(['id' => $id]);
-    }
-
-    public function getTagsModel()
-    {
-        return $this->tags;
-    }
-
-    public function getCommentsModel()
-    {
-        return $this->comments;
     }
 
     public static function getByCategory($category_id)

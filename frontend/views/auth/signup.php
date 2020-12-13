@@ -7,29 +7,35 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Signup';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Регистрация';
+
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-signup auth_view">
 
-    <p>Please fill out the following fields to signup:</p>
+    <div class="auth_form_wrap">
 
-    <div class="row">
-        <div class="col-lg-5">
+        <div class="section_title">
+            <div class="section_title__img">
+                <img src="/img/svg/contacts.svg" alt="about">
+            </div>
+            <h2 class="section_title__text">
+                <?= Html::encode($this->title) ?>
+            </h2>
+        </div><!-- end section_title -->
+
+        <div class="contacts_content__form">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'input-text', 'placeholder' => 'Имя'])->label(false) ?>
+                <?= $form->field($model, 'email')->textInput(['class' => 'input-text', 'placeholder' => 'Email'])->label(false) ?>
+                <?= $form->field($model, 'password')->passwordInput(['class' => 'input-text', 'placeholder' => 'Пароль'])->label(false) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-dark form_btn', 'name' => 'signup-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
         </div>
+
     </div>
 </div>

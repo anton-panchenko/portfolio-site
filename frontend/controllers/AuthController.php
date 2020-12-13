@@ -79,7 +79,7 @@ class AuthController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect('/blog/index');
         } else {
             $model->password = '';
 
@@ -109,7 +109,7 @@ class AuthController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+            return $this->redirect('/blog/index');
         }
 
         return $this->render('signup', compact('model'));

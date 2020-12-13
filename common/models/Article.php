@@ -131,6 +131,61 @@ class Article extends \yii\db\ActiveRecord
             ->viaTable('article_tag', ['article_id' => 'id']);
     }
 
+    public function getTagsModel()
+    {
+        return $this->tags;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function getAuthorName()
+    {
+        return $this->author->username;
+    }
+
+    public function getCategoryId()
+    {
+        return $this->category->id;
+    }
+
+    public function getCategoryTitle()
+    {
+        return $this->category->title;
+    }
+
+    public function getCommentsModel()
+    {
+        return $this->comments;
+    }
+
     public function getSelectedTags()
     {
         $selectedIds = $this->getTags()->select('id')->asArray()->all();

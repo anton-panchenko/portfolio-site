@@ -39,8 +39,8 @@ class BlogController extends Controller
 
     public function actionTag($tag_id)
     {
+//        $query = ArticleRepository::getByTag($tag_id);
         $query = TagRepository::getArticlesByTagId($tag_id);
-//        var_dump($query);die;
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3]);
         $articles = $query->offset($pages->offset)->limit($pages->limit)->all();

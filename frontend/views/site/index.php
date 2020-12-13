@@ -6,6 +6,7 @@
 /* @var $projects \frontend\models\repositories\ProjectRepository */
 
 $this->title = Yii::t('main', 'Portfolio | Home');
+//$this->metaDescription = 'Добро пожаловать в портфолио веб-разработчика! Здесь Вы можете ознакомится с некоторыми моими работами, выполненными в разное время, начиная с 2020 года.';
 
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -20,8 +21,8 @@ use frontend\models\repositories\ArticleRepository;
     <div class="header_container">
         <div class="header_title">
             <h1 class="header_title__text">
-                Привет! Меня зовут Антон Панченко<br>
-                Это мой сайт
+                <?= Yii::t('main', 'Hello. I’m Anton Panchenko.') ?><br>
+                <?= Yii::t('main', 'It’s my site') ?>
                 <div class="header_title__photo">
                     <div class="header_title__photo__btn" id="btn_modal_window">
                         <i class="icon-camera"></i>
@@ -99,22 +100,22 @@ use frontend\models\repositories\ArticleRepository;
     </div><!-- end section_title -->
     <div class="about_content">
         <div class="about_facts about_content__item">
-            <h3 class="about_facts__title">Коротко обо мне</h3>
+            <h3 class="about_facts__title"><?= Yii::t('main', 'About Me') ?></h3>
             <div class="about_facts__items">
                 <div class="about_facts__items_item">
                     <div class="about_facts__items_item__title">
-                        Имя
+                        <?= Yii::t('main', 'Name') ?>
                     </div>
                     <div class="about_facts__items_item__content">
-                        Антон Панченко
+                        <?= Yii::t('main', 'Anton Panchenko') ?>
                     </div>
                 </div><!-- end about_facts__items_item -->
                 <div class="about_facts__items_item">
                     <div class="about_facts__items_item__title">
-                        Дата рождения
+                        <?= Yii::t('main', 'Date of birth') ?>
                     </div>
                     <div class="about_facts__items_item__content">
-                        05 марта 1986
+                        <?= Yii::t('main', 'March 05, 1986') ?>
                     </div>
                 </div><!-- end about_facts__items_item -->
                 <div class="about_facts__items_item">
@@ -127,15 +128,15 @@ use frontend\models\repositories\ArticleRepository;
                 </div><!-- end about_facts__items_item -->
                 <div class="about_facts__items_item">
                     <div class="about_facts__items_item__title">
-                        Адрес
+                        <?= Yii::t('main', 'Address') ?>
                     </div>
                     <div class="about_facts__items_item__content">
-                        Покровская 121А, Житомир
+                        <?= Yii::t('main', '121 Pokrovska St, Zhytomyr') ?>
                     </div>
                 </div><!-- end about_facts__items_item -->
                 <div class="about_facts__items_item">
                     <div class="about_facts__items_item__title">
-                        Телефон
+                        <?= Yii::t('main', 'Phone') ?>
                     </div>
                     <div class="about_facts__items_item__content">
                         +38-097-263-10-76
@@ -153,21 +154,22 @@ use frontend\models\repositories\ArticleRepository;
         </div><!-- end about_facts -->
         <div class="about_description about_content__item">
             <h3 class="about_description__title">
-                Я - веб разработчик
+                <?= Yii::t('main', 'Hello, i’m web developer') ?>
             </h3>
             <div class="about_description__text">
                 <div class="about_description__text_first">
-                    С начала 2020 года занимаюсь веб разработкой, но программированем увлекался со школьных лет. Уже сделал неколько разнообразных проектов.
+                    <?= Yii::t('main', 'Since the beginning of 2020, I\'ve been doing web development, but I\'ve been fond of programming since my school years. I have already done several different projects.') ?>
                 </div><!-- end about_description__text_first -->
-                <div class="about_description__text_second">
-                    Парраллельно изучаю и front, и back части веб-проетков. Использую для каждой части фреймворки, что дает возможность выполнить работу над вашим проектом в сжатые сроки и качественно.
+                <div class="about_description__text_first">
+                    <?= Yii::t('main', 'In parallel, I study both the front and back parts of web projects. I use frameworks for each part, which makes it possible to complete work on your project in a short time and efficiently.') ?>
                 </div><!-- end about_description__text_second -->
             </div><!-- end about_description__text -->
         </div><!-- end about_description -->
     </div><!-- end about_content -->
     <div class="section_buttons">
-        <a href="#" class="btn btn-dark" target="_blank">Загрузить резюме</a>
-        <!--        <a href="#" class="btn btn-light">Напечатать резюме</a>-->
+        <a href="<?= Url::to('/uploads/2020-12-12_CV_Panchenko_AV.pdf') ?>" class="btn btn-dark" target="_blank">
+            <?= Yii::t('main', 'Download resume') ?>
+        </a><!--        <a href="#" class="btn btn-light">Напечатать резюме</a>-->
     </div><!-- end about_buttons -->
 </section><!-- end about -->
 <section class="section resume" id="blockResume" data-menu="2">
@@ -181,7 +183,7 @@ use frontend\models\repositories\ArticleRepository;
     </div><!-- end section_title -->
     <div class="resume_content">
         <div class="resume_content__title">
-            Профессиональные навыки
+            <?= Yii::t('main', 'Professional skills') ?>
         </div><!-- end resume_content__title -->
         <div class="resume_content__parts">
             <div class="resume_content__parts_row">
@@ -248,22 +250,22 @@ use frontend\models\repositories\ArticleRepository;
                 </div><!-- end resume_content__parts_row__col -->
                 <div class="resume_content__parts_row__col">
                     <p class="resume_opportunities__item">
-                        Верстаю адаптивные страницы
+                        <?= Yii::t('main', 'Make responsive pages') ?>
                     </p><!-- end resume_opportunities__item -->
                     <p class="resume_opportunities__item">
-                        Использованую библиотеку jQuery
+                        <?= Yii::t('main', 'Using jQuery library') ?>
                     </p><!-- end resume_opportunities__item -->
                     <p class="resume_opportunities__item">
-                        Использую препроцессор SASS
+                        <?= Yii::t('main', 'Using the SASS preprocessor') ?>
                     </p><!-- end resume_opportunities__item -->
                     <p class="resume_opportunities__item">
-                        Использую таскраннер GULP
+                        <?= Yii::t('main', 'I use the GULP taskrunner') ?>
                     </p><!-- end resume_opportunities__item -->
                     <p class="resume_opportunities__item">
-                        Умею планировать свое время
+                        <?= Yii::t('main', 'I know how to plan my time') ?>
                     </p><!-- end resume_opportunities__item -->
                     <p class="resume_opportunities__item">
-                        Все время совершенствуюсь
+                        <?= Yii::t('main', 'I\'m improving all the time') ?>
                     </p><!-- end resume_opportunities__item -->
                 </div><!-- end resume_content__parts_row__col -->
             </div><!-- end resume_content__parts_row -->
@@ -284,16 +286,16 @@ use frontend\models\repositories\ArticleRepository;
             <?= Yii::t('main', 'All') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".dashboard">
-            Dashboards
+            <?= Yii::t('main', 'Dashboards') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".landing">
             Landing-page
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".shop">
-            Shop
+            <?= Yii::t('main', 'Shops') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".program">
-            App
+            <?= Yii::t('main', 'Apps') ?>
         </a>
     </div><!-- end works_filter -->
     <div class="works_gallery grid" id="grid">
@@ -316,7 +318,9 @@ use frontend\models\repositories\ArticleRepository;
 
     </div><!-- end works_gallery -->
     <div class="section_buttons">
-        <a href="<?= Url::to('/portfolio') ?>" class="btn btn-dark" target="_blank">Все работы</a>
+        <a href="<?= Url::to('/portfolio') ?>" class="btn btn-dark" target="_blank">
+            <?= Yii::t('blog', 'Show more') ?>
+        </a>
     </div><!-- end section_buttons -->
 </section><!-- end works -->
 
@@ -350,7 +354,7 @@ use frontend\models\repositories\ArticleRepository;
                 <p class="blog_gallery__item_footer__date">
                     <?= Date::getDate($article->getUpdatedAt()); ?>
                 </p>
-                <a href="<?= Url::to('/blog/'.$article->getCategoryId()) ?>" class="blog_gallery__item_footer__author">
+                <a href="<?= Url::to('/blog/category/'.$article->getCategoryId()) ?>" class="blog_gallery__item_footer__author">
                     <?= $article->getCategoryTitle() ?>
                 </a>
             </div><!-- end blog_gallery__item_footer -->
@@ -386,15 +390,15 @@ use frontend\models\repositories\ArticleRepository;
             </div><!-- end contacts_content__info_item -->
             <div class="contacts_content__info_item">
                 <div class="contacts_content__info_item__title">
-                    Адрес
+                    <?= Yii::t('main', 'Address') ?>
                 </div>
                 <div class="contacts_content__info_item__content">
-                    Покровская 121А, Житомир
+                    <?= Yii::t('main', '121 Pokrovska St, Zhytomyr') ?>
                 </div>
             </div><!-- end contacts_content__info_item -->
             <div class="contacts_content__info_item">
                 <div class="contacts_content__info_item__title">
-                    Телефон
+                    <?= Yii::t('main', 'Phone') ?>
                 </div>
                 <div class="contacts_content__info_item__content">
                     +38-097-263-10-76
@@ -427,16 +431,30 @@ use frontend\models\repositories\ArticleRepository;
         <div class="contacts_content__form">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-            <?= $form->field($contactForm, 'name')->textInput(['autofocus' => true, 'class' => 'input-text', 'placeholder' => 'Имя'])->label(false) ?>
-
-            <?= $form->field($contactForm, 'email')->textInput(['class' => 'input-text', 'placeholder' => 'Email'])->label(false) ?>
-
-            <?= $form->field($contactForm, 'subject')->textInput(['class' => 'input-text', 'placeholder' => 'Тема'])->label(false) ?>
-
-            <?= $form->field($contactForm, 'body')->textarea(['rows' => 6, 'class' => 'input-textarea', 'placeholder' => 'Сообщение'])->label(false) ?>
+            <?= $form->field($contactForm, 'name')->textInput([
+                'autofocus' => true,
+                'class' => 'input-text',
+                'placeholder' => Yii::t('main', 'Name')
+            ])->label(false) ?>
+            <?= $form->field($contactForm, 'email')->textInput([
+                'class' => 'input-text',
+                'placeholder' => 'Email'
+            ])->label(false) ?>
+            <?= $form->field($contactForm, 'subject')->textInput([
+                'class' => 'input-text',
+                'placeholder' => Yii::t('main', 'Subject')
+            ])->label(false) ?>
+            <?= $form->field($contactForm, 'body')->textarea([
+                'rows' => 6,
+                'class' => 'input-textarea',
+                'placeholder' => Yii::t('main', 'Message')
+            ])->label(false) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Отправить', ['class' => 'btn btn-dark', 'name' => 'contact-button']) ?>
+                <?= Html::submitButton(Yii::t('main', 'Send'), [
+                    'class' => 'btn btn-dark',
+                    'name' => 'contact-button'
+                ]) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

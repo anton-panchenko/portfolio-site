@@ -49,7 +49,7 @@ $this->title = Yii::t('main', 'Portfolio | Blog');
                     <p class="blogPage_gallery__item_footer__date">
                         <?= Date::getDate($article->getUpdatedAt()); ?>
                     </p>
-                    <a href="<?= Url::to('/blog/'.$article->getCategoryId()) ?>" class="blogPage_gallery__item_footer__author">
+                    <a href="<?= Url::to('/blog/category/'.$article->getCategoryId()) ?>" class="blogPage_gallery__item_footer__author">
                         <?= $article->getCategoryTitle() ?>
                     </a>
                 </div><!-- end blog_gallery__item_footer -->

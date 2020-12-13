@@ -15,5 +15,29 @@
 
 pre {
     background-color: #e0e6e9;
-    padding: 0 20px;
+    padding: 0 calc(10px + 0.6954102920723226vw);
+    overflow: auto;
+}
+
+.auth_view {
+    display: flex;
+    justify-content: center;
+}
+
+.auth_form_wrap {
+    padding: calc(100px + 6.954102920723226vw) 0;
+}
+
+.form_btn {
+    margin-top: calc(10px + 0.6954102920723226vw);
+}
+
+.hidden_els {
+    visibility: hidden;
+}
+
+.help-block {
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    color: #6c7988;
 }

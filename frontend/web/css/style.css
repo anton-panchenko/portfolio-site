@@ -1995,7 +1995,16 @@ textarea {
 }
 
 @media (max-width: 450px) {
-  .fixed_menu {
+
+  .toMainLink {
+    display: none;
+  }
+
+  .head_menu {
+    display: none;
+  }
+
+  .menuOnMain {
     display: none;
   }
 
@@ -2085,11 +2094,11 @@ textarea {
   }
 
   .head_menu {
-    display: none;
+    /*display: none;*/
   }
 
   .fixed_menu {
-    display: none;
+    /*display: none;*/
   }
 }
 
