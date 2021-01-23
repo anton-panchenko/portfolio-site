@@ -39,7 +39,7 @@ use frontend\widgets\multiLang\MultiLang;
             ['class' => 'fixed_menu__item redirectLink toMainLink'])
         ?>
 
-        <?= Register::widget(); ?>
+<!--        --><?//= Register::widget(); ?>
 
         <?= MultiLang::widget(); ?>
 

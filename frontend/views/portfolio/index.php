@@ -23,16 +23,16 @@ $this->title = Yii::t('main', 'Portfolio | My works');
             <?= Yii::t('main', 'All') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".dashboard">
-            Dashboards
+            <?= Yii::t('main', 'Dashboards') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".landing">
             Landing-page
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".shop">
-            Shop
+            <?= Yii::t('main', 'Shops') ?>
         </a>
         <a href="" class="works_filter__item filter-btn" data-filter=".program">
-            App
+            <?= Yii::t('main', 'Apps') ?>
         </a>
     </div><!-- end works_filter -->
     <div class="works_gallery grid" id="grid">

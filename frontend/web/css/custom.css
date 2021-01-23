@@ -41,3 +41,21 @@ pre {
     font-size: 10px;
     color: #6c7988;
 }
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: #e0e6e9;
+    overflow: auto;
+    color: #6c7988;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #6c7988;
+}
+
+td {
+    text-align: center;
+}

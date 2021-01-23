@@ -319,7 +319,7 @@ use frontend\models\repositories\ArticleRepository;
     </div><!-- end works_gallery -->
     <div class="section_buttons">
         <a href="<?= Url::to('/portfolio') ?>" class="btn btn-dark" target="_blank">
-            <?= Yii::t('blog', 'Show more') ?>
+            <?= Yii::t('main', 'Show more') ?>
         </a>
     </div><!-- end section_buttons -->
 </section><!-- end works -->

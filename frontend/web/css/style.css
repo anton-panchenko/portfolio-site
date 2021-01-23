@@ -1899,6 +1899,12 @@ textarea {
   }
 }
 
+@media (max-width: 760px) {
+  .table-760 {
+    display: none;
+  }
+}
+
 @media (max-width: 750px) {
   .post_wrap {
     width: 600px;
